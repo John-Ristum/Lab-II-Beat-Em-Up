@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public enum PlayerState { Idle, Attack}
+
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     #region Rigidbody
     //[Header("Movement")]
@@ -171,12 +173,15 @@ public class PlayerMovement : MonoBehaviour
     //}
     #endregion
 
+    public PlayerState state;
+
     [Header("Movement")]
     public CharacterController controller;
     public float speed = 10f;
     public float runSpeed = 10f;
     public float walkSpeed = 5f;
     public Transform orientation;
+    public Vector3 moveDirection;
 
     [Header("Gravity")]
     public float gravity = -9.81f;
@@ -192,6 +197,11 @@ public class PlayerMovement : MonoBehaviour
     public float slopeForceRayLength;
 
     public Animator anim;
+
+    public List<GameObject> enemiesInRange;
+    public GameObject targetEnemy;
+    public float distance;
+    public float nearestDistance = 1000f;
 
     private void Start()
     {
@@ -210,9 +220,9 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxisRaw("Vertical");
 
         //Move the player
-        Vector3 moveDirection = orientation.forward * z + orientation.right * x;
+        moveDirection = orientation.forward * z + orientation.right * x;
 
-        if (moveDirection.magnitude >= 0.1f)
+        if (moveDirection.magnitude >= 0.1f && state == PlayerState.Idle)
         {
             controller.Move(moveDirection * speed * Time.deltaTime);
         }
@@ -222,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(Vector3.down * controller.height / 2 * slopeForce * Time.deltaTime);
 
         //Handles animation
-            anim.SetFloat("movementSpeed", moveDirection.magnitude);
+        anim.SetFloat("movementSpeed", moveDirection.magnitude);
 
         //Gravity
         if (gravityOn)

@@ -14,12 +14,12 @@ public class RecenterCamera : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("RecenterCam"))
         {
             cinCam.m_RecenterToTargetHeading.m_enabled = true;
             cinCam.m_YAxisRecentering.m_enabled = true;
         }
-        else if (Input.GetButtonUp("Fire1"))
+        else if (Input.GetButtonUp("RecenterCam"))
         {
             cinCam.m_RecenterToTargetHeading.m_enabled = false;
             cinCam.m_YAxisRecentering.m_enabled = false;
