@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackType { Light, Heavy}
+
 public class PlayerAttack : GameBehaviour
 {
+    public AttackType type;
+
     public bool canCombo;
+
+    public float knockbackXZ;
+    public float knockbackY;
+    public bool freezeY;
 
     void Update()
     {
@@ -35,6 +43,8 @@ public class PlayerAttack : GameBehaviour
         if (!canCombo)
             return;
 
+        type = AttackType.Light;
+
         if (_PLAYER.state == PlayerState.Idle)
         {
             _PLAYER.anim.CrossFadeInFixedTime("testATK1", 0.25f);
@@ -50,6 +60,8 @@ public class PlayerAttack : GameBehaviour
     {
         if (!canCombo)
             return;
+
+        type = AttackType.Heavy;
 
         if (_PLAYER.state == PlayerState.Idle)
         {
