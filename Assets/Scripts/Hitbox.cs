@@ -15,33 +15,28 @@ public class Hitbox : GameBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            //Debug.Log("Attack Landed");
             TestEnemy enemy = other.GetComponent<TestEnemy>();
             Rigidbody enemyRB = other.attachedRigidbody;
 
-            //Disables upwards knockback if enemy is airborne
             if (enemy.isGrounded == false && attack.knockbackY >= 0)
             {
+                //Alters knockback force if airborne (forces differ in air compared to ground)
                 if (attack.type == AttackType.Light)
                     attack.knockbackXZ = attack.knockbackXZ / 4;
                 else if (attack.type == AttackType.Heavy)
                     attack.knockbackXZ = attack.knockbackXZ / 2;
 
+                //Disables upwards knockback if enemy is airborne
                 attack.knockbackY = 0;
                 enemy.HitStun();
             }
 
-            //Knockback
-            
-            Vector3 moveDirection = enemyRB.transform.position - _PLAYER.transform.position;
-
+            //Determine direction of knockback
+            Vector3 knockbackDirection = enemyRB.transform.position - _PLAYER.transform.position;
+            //Resets velocity to prevent knockback compounding
             enemyRB.velocity = new Vector3(0, 0, 0);
-
-            enemyRB.AddForce(moveDirection.x * attack.knockbackXZ, moveDirection.y * attack.knockbackY, moveDirection.z * attack.knockbackXZ);
-
-            //enemyRB.constraints = RigidbodyConstraints.FreezePosition;
-            //enemyRB.constraints = RigidbodyConstraints.None;
-            //enemyRB.constraints = RigidbodyConstraints.FreezeRotation;
+            //Apply knockback
+            enemyRB.AddForce(knockbackDirection.x * attack.knockbackXZ, knockbackDirection.y * attack.knockbackY, knockbackDirection.z * attack.knockbackXZ);
         }
     }
 }

@@ -6,19 +6,20 @@ public class ResetParameters : StateMachineBehaviour
 {
     PlayerAttack attack;
     PlayerMovement movement;
-    Animator anim;
+    QuickStep quickStep;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        anim = animator;
-        attack = anim.GetComponent<PlayerAttack>();
-        movement = anim.GetComponent<PlayerMovement>();
+        attack = animator.GetComponent<PlayerAttack>();
+        movement = animator.GetComponent<PlayerMovement>();
+        quickStep = animator.GetComponent<QuickStep>();
 
         //reset state
         movement.state = PlayerState.Idle;
-        anim.applyRootMotion = false;
-        anim.SetBool("cantMove", false);
+        quickStep.dashNum = 0;
+        animator.applyRootMotion = false;
+        animator.SetBool("cantMove", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

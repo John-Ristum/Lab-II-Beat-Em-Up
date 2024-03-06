@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState { Idle, Attack}
+public enum PlayerState { Idle, Attack, QuickStep, Damage}
 
 public class PlayerMovement : Singleton<PlayerMovement>
 {
@@ -181,6 +181,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float runSpeed = 10f;
     public float walkSpeed = 5f;
     public Transform orientation;
+    public Vector3 inputDirection;
     public Vector3 moveDirection;
 
     [Header("Gravity")]
@@ -196,6 +197,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float slopeForce;
     public float slopeForceRayLength;
 
+    [Header("Misc")]
+    public float health = 100;
+    public float maxHealth = 100;
     public Animator anim;
 
     public List<GameObject> enemiesInRange;
@@ -208,6 +212,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
         controller = GetComponent<CharacterController>();
         speed = runSpeed;
         anim = GetComponent<Animator>();
+        //Gives the player a default move direction so that QuickStepping works without having to move first
+        //moveDirection = Quaternion.Euler(0f, 0.1f, 0f) * Vector3.forward;
     }
 
     private void Update()
@@ -220,11 +226,14 @@ public class PlayerMovement : Singleton<PlayerMovement>
         float z = Input.GetAxisRaw("Vertical");
 
         //Move the player
-        moveDirection = orientation.forward * z + orientation.right * x;
+        inputDirection = orientation.forward * z + orientation.right * x;
 
-        if (moveDirection.magnitude >= 0.1f && state == PlayerState.Idle)
+        if (inputDirection.magnitude >= 0.1f)
         {
-            controller.Move(moveDirection * speed * Time.deltaTime);
+            moveDirection = orientation.forward * z + orientation.right * x;
+
+            if (state == PlayerState.Idle)
+                controller.Move(moveDirection * speed * Time.deltaTime);
         }
 
         //Slope Movement
@@ -232,7 +241,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
             controller.Move(Vector3.down * controller.height / 2 * slopeForce * Time.deltaTime);
 
         //Handles animation
-        anim.SetFloat("movementSpeed", moveDirection.magnitude);
+        anim.SetFloat("movementSpeed", inputDirection.magnitude);
 
         //Gravity
         if (gravityOn)
@@ -256,5 +265,21 @@ public class PlayerMovement : Singleton<PlayerMovement>
             if (hit.normal != Vector3.up)
                 return true;
         return false;
+    }
+
+    public void RecieveDamage(float _damage)
+    {
+        state = PlayerState.Damage;
+        anim.SetTrigger("Damage");
+        health -= _damage;
+        Debug.Log(health);
+    }
+
+    public void RecoverHealth(float _recAmount)
+    {
+        health += _recAmount;
+        if (health > maxHealth)
+            health = maxHealth;
+        Debug.Log(health);
     }
 }

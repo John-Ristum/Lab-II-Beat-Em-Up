@@ -20,6 +20,12 @@ public class PlayerAttack : GameBehaviour
             LightAttack();
         if (Input.GetButtonDown("AtkHeavy"))
             HeavyAttack();
+
+        //Test player damage
+        if (Input.GetKeyDown("0"))
+            _PLAYER.RecieveDamage(10f);
+        if (Input.GetKeyDown("9"))
+            _PLAYER.RecoverHealth(10f);
     }
 
     void Attack()
@@ -27,8 +33,10 @@ public class PlayerAttack : GameBehaviour
         _PLAYER.state = PlayerState.Attack;
         _PLAYER.anim.applyRootMotion = true;
         _PLAYER.anim.SetBool("cantMove", true);
-        _PLAYER.moveDirection = new Vector3(0, 0, 0);
-        
+        _PLAYER.inputDirection = new Vector3(0, 0, 0);
+
+        ClearNearestEnemy();
+
         //checks for enemy in range
         if (_PLAYER.targetEnemy == null)
             FindNearestEnemy();
@@ -45,10 +53,10 @@ public class PlayerAttack : GameBehaviour
 
         type = AttackType.Light;
 
-        if (_PLAYER.state == PlayerState.Idle)
+        if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
             _PLAYER.anim.CrossFadeInFixedTime("testATK1", 0.25f);
-            ClearNearestEnemy();
+            //ClearNearestEnemy();
         }
         else
             _PLAYER.anim.SetTrigger("atkLight");
@@ -63,10 +71,10 @@ public class PlayerAttack : GameBehaviour
 
         type = AttackType.Heavy;
 
-        if (_PLAYER.state == PlayerState.Idle)
+        if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
             _PLAYER.anim.CrossFadeInFixedTime("testFin0", 0.25f);
-            ClearNearestEnemy();
+            //ClearNearestEnemy();
         }
         else
             _PLAYER.anim.SetTrigger("atkHeavy");

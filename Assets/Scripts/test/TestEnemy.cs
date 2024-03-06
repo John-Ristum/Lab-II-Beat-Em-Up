@@ -35,21 +35,18 @@ public class TestEnemy : MonoBehaviour
 
     public void HitStun()
     {
-        Debug.Log("Worked");
-        StopAllCoroutines();
+        //StopAllCoroutines();
+        StopCoroutine(FreezeY());
         StartCoroutine(FreezeY());
-        FreezeY();
     }
 
     IEnumerator FreezeY()
     {
-        Debug.Log("Enter");
         rb.constraints = RigidbodyConstraints.FreezePositionY;
 
         yield return new WaitForSeconds(fallRate);
 
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        Debug.Log("Exit");
     }
 }
