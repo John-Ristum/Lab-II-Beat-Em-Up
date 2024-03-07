@@ -15,7 +15,7 @@ public class QuickStep : GameBehaviour
     {
         if (Input.GetButtonDown("QuickStep") && _PLAYER.state != PlayerState.Damage)
         {
-            if (dashNum < dashLimit)
+            if (dashNum >= dashLimit)
                 return;
 
             dashNum++;
