@@ -32,7 +32,7 @@ public class QuickStep : GameBehaviour
     {
         //Gets direction of quickstep (Allows for directional quickstepping)
         if (_PLAYER.inputDirection.magnitude >= 0.1f)
-            dashDir = _PLAYER.moveDirection;
+            dashDir = _PLAYER.moveDirection.normalized;
         else
             dashDir = _PLAYER.transform.forward * -1;
 

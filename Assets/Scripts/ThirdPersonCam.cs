@@ -4,23 +4,14 @@ using UnityEngine;
 
 public class ThirdPersonCam : GameBehaviour
 {
+    //Only relevent to Method A of player movement. Deactivate if using Method B
+
     [Header("References")]
     public Transform orientation;
     public Transform player;
     public Rigidbody rb;
 
     public float rotationSpeed;
-
-    void Start()
-    {
-        ToggleCursorLockState();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("1"))
-            ToggleCursorLockState();
-    }
 
     void FixedUpdate()
     {
@@ -35,13 +26,5 @@ public class ThirdPersonCam : GameBehaviour
 
         if (inputDir != Vector3.zero && _PLAYER.state == PlayerState.Idle)
             player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-    }
-
-    void ToggleCursorLockState()
-    {
-        if (Cursor.lockState == CursorLockMode.Locked)
-            Cursor.lockState = CursorLockMode.None;
-        else if (Cursor.lockState == CursorLockMode.None)
-            Cursor.lockState = CursorLockMode.Locked;
     }
 }

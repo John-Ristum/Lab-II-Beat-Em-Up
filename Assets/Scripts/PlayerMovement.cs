@@ -207,34 +207,73 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float distance;
     public float nearestDistance = 1000f;
 
+    float x;
+    float z;
+    public Transform cam;
+    public float turnSmoothTime = 0.1f;
+    public float turnSmoothVelocity;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         speed = runSpeed;
         anim = GetComponent<Animator>();
-        //Gives the player a default move direction so that QuickStepping works without having to move first
-        //moveDirection = Quaternion.Euler(0f, 0.1f, 0f) * Vector3.forward;
+        ToggleCursorLockState();
     }
 
     private void Update()
     {
+        //Get the input from the player
+        x = Input.GetAxisRaw("Horizontal");
+        z = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown("1"))
+            ToggleCursorLockState();
+    }
+
+    private void FixedUpdate()
+    {
         //Checks if we are touching the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        //Get the input from the player
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
-
         //Move the player
-        inputDirection = orientation.forward * z + orientation.right * x;
+        #region Method A
+        //inputDirection = orientation.forward * z + orientation.right * x;
+
+        //if (inputDirection.magnitude >= 0.1f)
+        //{
+        //    if (inputDirection.magnitude > 0.6)
+        //        speed = runSpeed;
+        //    else
+        //        speed = walkSpeed;
+
+        //    moveDirection = orientation.forward * z + orientation.right * x;
+
+        //    if (state == PlayerState.Idle)
+        //        controller.Move(moveDirection * speed * Time.deltaTime);
+        //}
+        #endregion
+
+        #region Method B
+        inputDirection = new Vector3(x, 0f, z);
 
         if (inputDirection.magnitude >= 0.1f)
         {
-            moveDirection = orientation.forward * z + orientation.right * x;
+            if (inputDirection.magnitude > 0.6)
+                speed = runSpeed;
+            else
+                speed = walkSpeed;
+
+            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            moveDirection = Quaternion.Euler(x, targetAngle, z) * Vector3.forward;
 
             if (state == PlayerState.Idle)
                 controller.Move(moveDirection * speed * Time.deltaTime);
         }
+        #endregion
 
         //Slope Movement
         if (moveDirection.magnitude != 0 && OnSlope())
@@ -252,6 +291,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
+
     }
 
     private bool OnSlope()
@@ -281,5 +321,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (health > maxHealth)
             health = maxHealth;
         Debug.Log(health);
+    }
+
+    void ToggleCursorLockState()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.None;
+        else if (Cursor.lockState == CursorLockMode.None)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 }
