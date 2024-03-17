@@ -212,6 +212,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Transform cam;
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
+    public Rigidbody rb;
 
     private void Start()
     {
@@ -229,9 +230,17 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         if (Input.GetKeyDown("1"))
             ToggleCursorLockState();
+
+        
     }
 
     private void FixedUpdate()
+    {
+
+        MovePlayer();
+    }
+
+    void MovePlayer()
     {
         //Checks if we are touching the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -291,7 +300,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
-
     }
 
     private bool OnSlope()

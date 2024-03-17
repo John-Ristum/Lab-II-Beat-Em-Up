@@ -43,7 +43,7 @@ public class PlayerAttack : GameBehaviour
 
         //makes player face enemy if one is in range
         if (_PLAYER.targetEnemy != null)
-            _PLAYER.transform.LookAt(new Vector3(_PLAYER.targetEnemy.transform.localPosition.x, _PLAYER.transform.position.y, _PLAYER.targetEnemy.transform.localPosition.z));
+            _PLAYER.transform.LookAt(new Vector3(_PLAYER.targetEnemy.transform.position.x, _PLAYER.transform.position.y, _PLAYER.targetEnemy.transform.position.z));    //transform.localPosition was causing problems when target was parented to other object
     }
 
     void LightAttack()
