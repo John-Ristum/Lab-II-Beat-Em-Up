@@ -41,16 +41,16 @@ public class Enemy : GameBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        //agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
     }
 
     
     void Update()
     {
-        //moveDir = agent.desiredVelocity.normalized;
+        moveDir = agent.desiredVelocity.normalized;
 
-        //moveDir = new Vector3(transform.right.magnitude * agent.desiredVelocity.x, 0f, transform.forward.magnitude * agent.desiredVelocity.z); uncomment this when done experimenting
+        moveDir = new Vector3(transform.right.magnitude * agent.desiredVelocity.x, 0f, transform.forward.magnitude * agent.desiredVelocity.z);
 
         //anim.SetFloat("moveX", moveDir.x - _PLAYER.transform.position.x);
         anim.SetFloat("moveY", transform.forward.magnitude * moveDir.z);
@@ -74,12 +74,12 @@ public class Enemy : GameBehaviour
 
         //transform.position - _PLAYER.transform.position
         //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        //transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
 
         switch (state)
         {
             case EnemyState.Roam:
-                //Roam();
+                Roam();
                 break;
             case EnemyState.Chase:
                 Chase();
@@ -183,7 +183,7 @@ public class Enemy : GameBehaviour
     public void TakeDamage(int _damage)
     {
         state = EnemyState.Damage;
-        //agent.speed = 0f;
+        agent.speed = 0f;
         anim.SetTrigger("Damage");
         health -= _damage;
     }

@@ -53,6 +53,7 @@ public class Hitbox : GameBehaviour
             //Determine direction of knockback
             Vector3 knockbackDirection = enemyRB.transform.position - _PLAYER.transform.position;
             //Resets velocity to prevent knockback compounding
+            //enemyRB.isKinematic = false;
             enemyRB.velocity = new Vector3(0, 0, 0);
             //Apply knockback
             enemyRB.AddForce(knockbackDirection.x * attack.knockbackXZ, knockbackDirection.y * attack.knockbackY, knockbackDirection.z * attack.knockbackXZ);
