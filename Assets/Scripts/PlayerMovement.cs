@@ -212,13 +212,21 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Transform cam;
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
+
+    //Rb Stuff
     public Rigidbody rb;
+    public Collider rbCollider; //is supposed to contain Capsual Collider, NOT Character Controller
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         speed = runSpeed;
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        rbCollider = GetComponent<Collider>();
+        
+        //UseRigidbody(false);
+
         ToggleCursorLockState();
     }
 
@@ -329,6 +337,14 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (health > maxHealth)
             health = maxHealth;
         Debug.Log(health);
+    }
+
+    void UseRigidbody(bool _state)
+    {
+        rb.detectCollisions = _state;
+        rb.isKinematic = !_state;
+        rb.useGravity = _state;
+        rbCollider.enabled = _state;
     }
 
     void ToggleCursorLockState()
