@@ -4,20 +4,38 @@ using UnityEngine;
 
 public class AssignKnockback : StateMachineBehaviour
 {
+    public AttackingParty user;
+
     PlayerAttack attack;
+    Enemy enemy;
 
     public float knockbackXZ = 100f;
     public float knockbackY;
+    public int damage = 10;
     public bool freezeY;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attack = animator.GetComponent<PlayerAttack>();
+        switch (user)
+        {
+            case AttackingParty.Player:
+                attack = animator.GetComponent<PlayerAttack>();
 
-        attack.knockbackXZ = knockbackXZ;
-        attack.knockbackY = knockbackY;
-        attack.freezeY = freezeY;
+                attack.knockbackXZ = knockbackXZ;
+                attack.knockbackY = knockbackY;
+                attack.freezeY = freezeY;
+                attack.damage = damage;
+                break;
+            case AttackingParty.Enemy:
+                enemy = animator.GetComponent<Enemy>();
+
+                enemy.knockbackXZ = knockbackXZ;
+                enemy.knockbackY = knockbackY;
+                //enemy.freezeY = freezeY;
+                enemy.damage = damage;
+                break;
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

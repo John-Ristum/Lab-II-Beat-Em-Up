@@ -198,8 +198,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float slopeForceRayLength;
 
     [Header("Misc")]
-    public float health = 100;
-    public float maxHealth = 100;
+    public int health = 100;
+    public int maxHealth = 100;
     public Animator anim;
 
     public List<GameObject> enemiesInRange;
@@ -306,7 +306,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
                 velocity.y = -2f;
 
             velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+
+            if(controller.enabled == true)
+                controller.Move(velocity * Time.deltaTime);
         }
     }
 
@@ -323,15 +325,17 @@ public class PlayerMovement : Singleton<PlayerMovement>
         return false;
     }
 
-    public void RecieveDamage(float _damage)
+    public void TakeDamage(int _damage)
     {
         state = PlayerState.Damage;
+        ActivateRB();
+
         anim.SetTrigger("Damage");
         health -= _damage;
         Debug.Log(health);
     }
 
-    public void RecoverHealth(float _recAmount)
+    public void RecoverHealth(int _recAmount)
     {
         health += _recAmount;
         if (health > maxHealth)
@@ -353,5 +357,17 @@ public class PlayerMovement : Singleton<PlayerMovement>
             Cursor.lockState = CursorLockMode.None;
         else if (Cursor.lockState == CursorLockMode.None)
             Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void ActivateRB()
+    {
+        rb.isKinematic = false; // Activates Rigidbody
+        controller.enabled = false;
+    }
+
+    public void ActivateCC()
+    {
+        rb.isKinematic = true; // Deactivates Rigidbody
+        controller.enabled = true;
     }
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class GameBehaviour : MonoBehaviour
 {
-    protected static PlayerMovement _PLAYER { get { return PlayerMovement.INSTANCE; } }
+    protected static EnemyManager _EM           { get { return EnemyManager.INSTANCE; } }
+    protected static PlayerMovement _PLAYER     { get { return PlayerMovement.INSTANCE; } }
 }

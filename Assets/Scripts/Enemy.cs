@@ -10,14 +10,22 @@ public class Enemy : GameBehaviour
     public EnemyState state;
     public float health = 100;
     Animator anim;
-    NavMeshAgent agent;
-    [SerializeField] LayerMask ground;
+    public NavMeshAgent agent;
+    public Transform groundCheck;
     public bool changeState;
-    Rigidbody rb;
+    public Rigidbody rb;
     public Vector3 moveDir;
     int randomNumber;
     float distToPlayer;
     public bool attacking;
+
+    public float groundDistance = 0.4f;
+    [SerializeField] LayerMask groundMask;
+    public bool isGrounded;
+
+    public Vector3 position1;
+    public Vector3 position2;
+    public float enemyAngle;
 
 
     [Header("Roam State")]
@@ -37,17 +45,29 @@ public class Enemy : GameBehaviour
     public float runSpeed = 6f;
     public float attackDistance = 1f;
 
+    [Header("Attack State")]
+    public float knockbackXZ;
+    public float knockbackY;
+    public int damage;
+    public bool canAttack;
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(PositionCheck());
     }
 
     
     void Update()
     {
+
+
+        //Checks if we are touching the ground
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         moveDir = agent.desiredVelocity.normalized;
 
         moveDir = new Vector3(transform.right.magnitude * agent.desiredVelocity.x, 0f, transform.forward.magnitude * agent.desiredVelocity.z);
@@ -124,7 +144,7 @@ public class Enemy : GameBehaviour
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
         if (Vector3.Distance(destPoint, _PLAYER.transform.position) < maxDistFromPlayer && Vector3.Distance(destPoint, _PLAYER.transform.position) > minDistFromPlayer)
-            if(Physics.Raycast(destPoint, Vector3.down, ground))
+            if(Physics.Raycast(destPoint, Vector3.down, groundMask))
             {
                 walkpointSet = true;
             }
@@ -182,10 +202,20 @@ public class Enemy : GameBehaviour
 
     public void TakeDamage(int _damage)
     {
-        state = EnemyState.Damage;
-        agent.speed = 0f;
-        anim.SetTrigger("Damage");
         health -= _damage;
+
+        if (health <= 0)
+            Die();
+        else
+        {
+            state = EnemyState.Damage;
+
+            agent.speed = 0f;
+            agent.enabled = false;
+            rb.isKinematic = false;
+
+            anim.SetTrigger("Damage");
+        }
     }
 
     public void Knockback(float _knockbackXZ, float _knockbackY)
@@ -201,5 +231,25 @@ public class Enemy : GameBehaviour
     void Jump()
     {
         rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+    }
+
+    IEnumerator PositionCheck()
+    {
+        position1 = transform.position;
+        yield return new WaitForSeconds(0.1f);
+        position2 = transform.position;
+        Vector3 targetDir = position1 - position2;
+        enemyAngle = Vector3.Angle(targetDir, transform.forward);
+        StartCoroutine(PositionCheck());
+    }
+
+    void Die()
+    {
+        state = EnemyState.Die;
+
+        agent.speed = 0;
+        GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
+        Destroy(this.gameObject);
     }
 }

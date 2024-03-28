@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : GameBehaviour
 {
-    public float recoveryAmount = 10;
+    public int recoveryAmount = 10;
 
     private void OnTriggerEnter(Collider other)
     {

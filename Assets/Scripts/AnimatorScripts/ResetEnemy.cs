@@ -10,7 +10,11 @@ public class ResetEnemy : StateMachineBehaviour
         Enemy enemy = animator.GetComponent<Enemy>();
 
         if (enemy.state == EnemyState.Attack || enemy.state == EnemyState.Damage)
+        {
+            enemy.rb.isKinematic = true;
+            enemy.agent.enabled = true;
             enemy.state = EnemyState.Roam;
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

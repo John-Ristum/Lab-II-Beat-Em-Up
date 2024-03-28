@@ -12,6 +12,7 @@ public class PlayerAttack : GameBehaviour
 
     public float knockbackXZ;
     public float knockbackY;
+    public int damage;
     public bool freezeY;
 
     void Update()
@@ -23,9 +24,9 @@ public class PlayerAttack : GameBehaviour
 
         //Test player damage
         if (Input.GetKeyDown("0"))
-            _PLAYER.RecieveDamage(10f);
+            _PLAYER.TakeDamage(10);
         if (Input.GetKeyDown("9"))
-            _PLAYER.RecoverHealth(10f);
+            _PLAYER.RecoverHealth(10);
     }
 
     void Attack()

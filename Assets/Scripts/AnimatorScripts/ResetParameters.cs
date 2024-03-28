@@ -16,6 +16,9 @@ public class ResetParameters : StateMachineBehaviour
         quickStep = animator.GetComponent<QuickStep>();
 
         //reset state
+        if (movement.controller.enabled == false)
+            movement.ActivateCC();
+
         movement.state = PlayerState.Idle;
         quickStep.dashNum = 0;
         animator.applyRootMotion = false;
