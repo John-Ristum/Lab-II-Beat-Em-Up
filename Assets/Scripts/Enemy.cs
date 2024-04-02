@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine.AI;
 public enum EnemyState { Roam, Chase, Attack, Damage, Die}
 public class Enemy : GameBehaviour
 {
+    public static event Action<GameObject> OnEmemyDie = null;
+
     [Header("General")]
     public EnemyState state;
     public float health = 100;
-    Animator anim;
+    public Animator anim;
     public NavMeshAgent agent;
     public Transform groundCheck;
     public bool changeState;
@@ -38,8 +41,6 @@ public class Enemy : GameBehaviour
     [SerializeField] float maxDistFromPlayer = 8;
     [SerializeField] float minDistFromPlayer = 1;
     [SerializeField] float maxDistFromDest = 1;
-    [SerializeField] float waitTime = 1f;
-    //public bool patrolSet = true;           //Used in animator to revert to patrol state once animation is done
 
     [Header("Chase State")]
     public float runSpeed = 6f;
@@ -138,8 +139,8 @@ public class Enemy : GameBehaviour
 
     void SearchForDest()
     {
-        float x = Random.Range(-moveRangeX, moveRangeX);
-        float z = Random.Range(-moveRangeZ, moveRangeZ);
+        float x = UnityEngine.Random.Range(-moveRangeX, moveRangeX);
+        float z = UnityEngine.Random.Range(-moveRangeZ, moveRangeZ);
 
         destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
@@ -152,11 +153,13 @@ public class Enemy : GameBehaviour
 
     void RollForAttack()
     {
-        randomNumber = Random.Range(0, 5);
+        randomNumber = UnityEngine.Random.Range(1, _EM.attackChance + 1);
 
-        if (randomNumber >= 4)
+        if (randomNumber == _EM.attackChance && _EM.enemiesAttacking.Count <= _EM.maxAttacking)
         {
             attacking = true;
+
+            _EM.enemiesAttacking.Add(this.gameObject);
 
             if (distToPlayer <= attackDistance)
                 Attack();
@@ -196,7 +199,7 @@ public class Enemy : GameBehaviour
         agent.speed = 0f;
         anim.applyRootMotion = true;
         state = EnemyState.Attack;
-        anim.SetTrigger("atk" + Random.Range(1, 3));
+        anim.SetTrigger("atk" + UnityEngine.Random.Range(1, 3));
         randomNumber = 0;
     }
 
@@ -243,6 +246,11 @@ public class Enemy : GameBehaviour
         StartCoroutine(PositionCheck());
     }
 
+    public void RemoveFromAttackList()
+    {
+        _EM.enemiesAttacking.Remove(this.gameObject);
+    }
+
     void Die()
     {
         state = EnemyState.Die;
@@ -250,6 +258,7 @@ public class Enemy : GameBehaviour
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         StopAllCoroutines();
+        OnEmemyDie?.Invoke(this.gameObject);
         Destroy(this.gameObject);
     }
 }

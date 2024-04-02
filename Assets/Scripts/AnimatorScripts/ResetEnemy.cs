@@ -11,6 +11,8 @@ public class ResetEnemy : StateMachineBehaviour
 
         if (enemy.state == EnemyState.Attack || enemy.state == EnemyState.Damage)
         {
+            enemy.RemoveFromAttackList();
+
             enemy.rb.isKinematic = true;
             enemy.agent.enabled = true;
             enemy.state = EnemyState.Roam;

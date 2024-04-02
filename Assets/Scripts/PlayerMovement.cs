@@ -239,6 +239,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (Input.GetKeyDown("1"))
             ToggleCursorLockState();
 
+        if (state != PlayerState.Damage)
+            _GM.CamUpdateFixed();
         
     }
 
@@ -369,5 +371,28 @@ public class PlayerMovement : Singleton<PlayerMovement>
     {
         rb.isKinematic = true; // Deactivates Rigidbody
         controller.enabled = true;
+    }
+
+    public void ClearDeadEnemy(GameObject _enemy)
+    {
+        for (int i = 0; i < enemiesInRange.Count; i++)
+        {
+            if (enemiesInRange[i] == _enemy)
+            {
+                enemiesInRange.Remove(_enemy);
+                return;
+                //break;
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        Enemy.OnEmemyDie += ClearDeadEnemy;
+    }
+
+    private void OnDisable()
+    {
+        Enemy.OnEmemyDie -= ClearDeadEnemy;
     }
 }

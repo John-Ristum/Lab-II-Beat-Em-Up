@@ -60,8 +60,12 @@ public class Hitbox : GameBehaviour
 
                 if (other.CompareTag("Enemy"))
                 {
+
                     Enemy enemy = other.GetComponent<Enemy>();
                     Rigidbody enemyRB = other.attachedRigidbody;
+
+                    if (enemy.anim.applyRootMotion == true)
+                        enemy.anim.applyRootMotion = false;
 
                     enemy.TakeDamage(attack.damage);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
@@ -85,6 +89,8 @@ public class Hitbox : GameBehaviour
 
                     _PLAYER.TakeDamage(enemy.damage);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
+
+                    _GM.CamUpdateLate();
 
                     //Determine direction of knockback
                     Vector3 knockbackDirection = _PLAYER.rb.transform.position - enemyRB.transform.position;
