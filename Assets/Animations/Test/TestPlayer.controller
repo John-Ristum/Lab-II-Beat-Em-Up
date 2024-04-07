@@ -86,7 +86,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 5b28b18ad3c32e749bc2deb0ce816be0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: cantMove
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1102 &-7962034962831142245
@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: 0
-  knockbackXZ: 100
+  knockbackXZ: 200
   knockbackY: 200
   damage: 10
+  isHeavy: 1
   freezeY: 0
 --- !u!1101 &-7520307757404931652
 AnimatorStateTransition:
@@ -175,6 +176,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1102 &-6787973234327007761
 AnimatorState:
@@ -220,6 +222,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1101 &-6704511948423630054
 AnimatorStateTransition:
@@ -917,6 +920,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1102 &2113792852190926625
 AnimatorState:
@@ -1082,6 +1086,7 @@ MonoBehaviour:
   knockbackXZ: 200
   knockbackY: 0
   damage: 30
+  isHeavy: 1
   freezeY: 0
 --- !u!1107 &6272864238956247548
 AnimatorStateMachine:
@@ -1168,6 +1173,7 @@ MonoBehaviour:
   knockbackXZ: 400
   knockbackY: 0
   damage: 30
+  isHeavy: 1
   freezeY: 0
 --- !u!114 &6793684938977270122
 MonoBehaviour:
@@ -1185,6 +1191,7 @@ MonoBehaviour:
   knockbackXZ: 300
   knockbackY: 0
   damage: 10
+  isHeavy: 1
   freezeY: 0
 --- !u!114 &6831728419391586893
 MonoBehaviour:
@@ -1199,9 +1206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: 0
-  knockbackXZ: 100
+  knockbackXZ: 200
   knockbackY: 200
   damage: 10
+  isHeavy: 1
   freezeY: 0
 --- !u!114 &6990805935787149673
 MonoBehaviour:
@@ -1219,6 +1227,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1102 &7340456104371830316
 AnimatorState:

@@ -67,6 +67,12 @@ public class Hitbox : GameBehaviour
                     if (enemy.anim.applyRootMotion == true)
                         enemy.anim.applyRootMotion = false;
 
+                    if (attack.isHeavy && enemy.onBoundary)
+                    {
+                        int breakThroughLayer = LayerMask.NameToLayer("BreakThrough");
+                        enemy.gameObject.layer = breakThroughLayer;
+                    }
+
                     enemy.TakeDamage(attack.damage);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
 

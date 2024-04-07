@@ -63,6 +63,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1102 &-6467235060349875386
 AnimatorState:
@@ -201,6 +202,7 @@ MonoBehaviour:
   knockbackXZ: 300
   knockbackY: 0
   damage: 10
+  isHeavy: 1
   freezeY: 0
 --- !u!114 &-3698704399690232538
 MonoBehaviour:
@@ -321,6 +323,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!91 &9100000
 AnimatorController:
@@ -631,6 +634,7 @@ MonoBehaviour:
   knockbackXZ: 300
   knockbackY: 0
   damage: 10
+  isHeavy: 1
   freezeY: 0
 --- !u!1102 &7815390020902244219
 AnimatorState:
@@ -704,6 +708,7 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  isHeavy: 0
   freezeY: 0
 --- !u!1101 &8632915685146456057
 AnimatorStateTransition:

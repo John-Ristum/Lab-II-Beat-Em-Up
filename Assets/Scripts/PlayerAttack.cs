@@ -13,6 +13,7 @@ public class PlayerAttack : GameBehaviour
     public float knockbackXZ;
     public float knockbackY;
     public int damage;
+    public bool isHeavy;
     public bool freezeY;
 
     void Update()

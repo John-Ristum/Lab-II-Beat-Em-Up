@@ -30,7 +30,9 @@ public class Enemy : GameBehaviour
     public Vector3 position2;
     public float enemyAngle;
 
-
+    public bool onBoundary;
+    
+    
     [Header("Roam State")]
     public float walkSpeed = 1.5f;
     public bool walkpointSet;
@@ -50,7 +52,11 @@ public class Enemy : GameBehaviour
     public float knockbackXZ;
     public float knockbackY;
     public int damage;
-    public bool canAttack;
+    public bool isHeavy;
+
+    [Header("Debug")]
+    public bool canAttack = true;
+    public bool canDie = true;
 
 
     void Start()
@@ -207,7 +213,7 @@ public class Enemy : GameBehaviour
     {
         health -= _damage;
 
-        if (health <= 0)
+        if (health <= 0 && canDie)
             Die();
         else
         {
@@ -260,5 +266,17 @@ public class Enemy : GameBehaviour
         StopAllCoroutines();
         OnEmemyDie?.Invoke(this.gameObject);
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Boundary"))
+            onBoundary = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Boundary"))
+            onBoundary = false;
     }
 }

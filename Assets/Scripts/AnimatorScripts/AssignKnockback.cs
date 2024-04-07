@@ -12,6 +12,7 @@ public class AssignKnockback : StateMachineBehaviour
     public float knockbackXZ = 100f;
     public float knockbackY;
     public int damage = 10;
+    public bool isHeavy;
     public bool freezeY;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -24,8 +25,9 @@ public class AssignKnockback : StateMachineBehaviour
 
                 attack.knockbackXZ = knockbackXZ;
                 attack.knockbackY = knockbackY;
-                attack.freezeY = freezeY;
                 attack.damage = damage;
+                attack.isHeavy = isHeavy;
+                attack.freezeY = freezeY;
                 break;
             case AttackingParty.Enemy:
                 enemy = animator.GetComponent<Enemy>();
@@ -34,6 +36,7 @@ public class AssignKnockback : StateMachineBehaviour
                 enemy.knockbackY = knockbackY;
                 //enemy.freezeY = freezeY;
                 enemy.damage = damage;
+                enemy.isHeavy = isHeavy;
                 break;
         }
     }
