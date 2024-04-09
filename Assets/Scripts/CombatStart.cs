@@ -20,7 +20,8 @@ public class CombatStart : GameBehaviour
         {
             combatStarted = true;
 
-            bridge.GetComponent<ActivateBridge>().EnableEvent();
+            if (bridge != null)
+                bridge.GetComponent<ActivateBridge>().EnableEvent();
 
             _EM.spawnPoints = spawnPoints;
             _EM.SpawnEnemies();

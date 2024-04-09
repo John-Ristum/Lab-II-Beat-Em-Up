@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class ActivateBridge : MonoBehaviour
 {
+    public GameObject oldBoundary;
+    public GameObject newBoundary;
+
     void ContinueLevel()
     {
         Animator anim = GetComponent<Animator>();
         anim.SetTrigger("ActivateBridge");
+
+        if (oldBoundary != null && newBoundary != null)
+        {
+            newBoundary.SetActive(true);
+            oldBoundary.SetActive(false);
+        } 
     }
 
     public void EnableEvent()

@@ -74,7 +74,10 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (Input.GetKeyDown("1"))
             ToggleCursorLockState();
 
-        if (state != PlayerState.Damage)
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
+            if (state != PlayerState.Damage)
             _GM.CamUpdateFixed();
 
         //test change layer
