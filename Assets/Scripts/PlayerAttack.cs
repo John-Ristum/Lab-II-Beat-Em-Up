@@ -16,18 +16,30 @@ public class PlayerAttack : GameBehaviour
     public bool isHeavy;
     public bool freezeY;
 
+    public GameObject blockCollider;
+
     void Update()
     {
-        if (Input.GetButtonDown("AtkLight"))
-            LightAttack();
-        if (Input.GetButtonDown("AtkHeavy"))
-            HeavyAttack();
-
         //Test player damage
         if (Input.GetKeyDown("0"))
             _PLAYER.TakeDamage(10);
         if (Input.GetKeyDown("9"))
             _PLAYER.RecoverHealth(10);
+
+        if (_PLAYER.state == PlayerState.Dead)
+            return;
+
+        if (Input.GetButtonDown("AtkLight"))
+            LightAttack();
+        if (Input.GetButtonDown("AtkHeavy"))
+            HeavyAttack();
+        //if (Input.GetButtonDown("Block"))
+        //    Block();
+        //if (Input.GetButtonUp("Block"))
+        //    _PLAYER.state = PlayerState.Idle;
+
+        if (_PLAYER.state != PlayerState.Block)
+            ExitBlock();
     }
 
     void Attack()
@@ -82,6 +94,19 @@ public class PlayerAttack : GameBehaviour
             _PLAYER.anim.SetTrigger("atkHeavy");
 
         Attack();
+    }
+
+    void Block()
+    {
+        _PLAYER.state = PlayerState.Block;
+        _PLAYER.anim.SetBool("blocking", true);
+        blockCollider.SetActive(true);
+    }
+
+    void ExitBlock()
+    {
+        _PLAYER.anim.SetBool("blocking", false);
+        blockCollider.SetActive(false);
     }
 
     void FindNearestEnemy()

@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState { Idle, Attack, QuickStep, Damage}
+public enum PlayerState { Idle, Attack, QuickStep, Damage, Block, Dead}
 
 public class PlayerMovement : Singleton<PlayerMovement>
 {
+    public static event Action PlayerDeath = null;
+
     public PlayerState state;
 
     [Header("Movement")]
@@ -33,6 +36,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     [Header("Misc")]
     public int health = 100;
     public int maxHealth = 100;
+    public bool cantDie;
     public Animator anim;
 
     public List<GameObject> enemiesInRange;
@@ -97,6 +101,21 @@ public class PlayerMovement : Singleton<PlayerMovement>
         //Checks if we are touching the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+        //Gravity
+        if (gravityOn)
+        {
+            if (isGrounded && velocity.y < 0)
+                velocity.y = -2f;
+
+            velocity.y += gravity * Time.deltaTime;
+
+            if (controller.enabled == true)
+                controller.Move(velocity * Time.deltaTime);
+        }
+
+        if (state == PlayerState.Dead)
+            return;
+
         //Move the player
         #region Method A
         //inputDirection = orientation.forward * z + orientation.right * x;
@@ -142,18 +161,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         //Handles animation
         anim.SetFloat("movementSpeed", inputDirection.magnitude);
-
-        //Gravity
-        if (gravityOn)
-        {
-            if (isGrounded && velocity.y < 0)
-                velocity.y = -2f;
-
-            velocity.y += gravity * Time.deltaTime;
-
-            if(controller.enabled == true)
-                controller.Move(velocity * Time.deltaTime);
-        }
     }
 
     private bool OnSlope()
@@ -171,12 +178,25 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public void TakeDamage(int _damage)
     {
+        if (state == PlayerState.Dead)
+            return;
+
         state = PlayerState.Damage;
         ActivateRB();
 
         anim.SetTrigger("Damage");
         health -= _damage;
         Debug.Log(health);
+
+        if (health <= 0 && !cantDie)
+            Die();
+    }
+
+    public void Die()
+    {
+        state = PlayerState.Dead;
+        anim.SetTrigger("Die");
+        PlayerDeath();
     }
 
     public void RecoverHealth(int _recAmount)

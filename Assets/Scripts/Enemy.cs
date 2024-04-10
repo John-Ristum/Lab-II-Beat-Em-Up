@@ -268,6 +268,11 @@ public class Enemy : GameBehaviour
         Destroy(this.gameObject);
     }
 
+    void PlayerIsDead()
+    {
+        Debug.Log("RIP Bozo");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boundary"))
@@ -278,5 +283,15 @@ public class Enemy : GameBehaviour
     {
         if (other.CompareTag("Boundary"))
             onBoundary = false;
+    }
+
+    private void OnEnable()
+    {
+        PlayerMovement.PlayerDeath += PlayerIsDead;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMovement.PlayerDeath -= PlayerIsDead;
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - EnemyT
   - EnemySpawnPoints
   - Boundary
+  - BlockCollider
   layers:
   - Default
   - TransparentFX
