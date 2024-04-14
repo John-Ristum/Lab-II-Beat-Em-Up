@@ -1,6 +1,8 @@
 using System;
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public enum PlayerState { Idle, Attack, QuickStep, Damage, Block, Dead}
@@ -52,6 +54,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     bool onBoundary;
 
+    public TMP_Text healthText; //temp
+    public GameObject cantDieText;
+
     //Rb Stuff
     public Rigidbody rb;
     public Collider rbCollider; //is supposed to contain Capsual Collider, NOT Character Controller
@@ -76,7 +81,14 @@ public class PlayerMovement : Singleton<PlayerMovement>
         z = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown("1"))
-            ToggleCursorLockState();
+        {
+            cantDie = !cantDie;
+            cantDieText.SetActive(cantDie);
+        }
+        //ToggleCursorLockState();
+
+        if (Input.GetKeyDown("r"))
+            SceneManager.LoadScene("Level");
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
@@ -178,7 +190,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public void TakeDamage(int _damage)
     {
-        if (state == PlayerState.Dead)
+        if (state == PlayerState.Dead || cantDie)
             return;
 
         state = PlayerState.Damage;
@@ -188,7 +200,10 @@ public class PlayerMovement : Singleton<PlayerMovement>
         health -= _damage;
         Debug.Log(health);
 
-        if (health <= 0 && !cantDie)
+        if (healthText != null)
+            healthText.text = "HP: " + health.ToString(); //temp
+
+        if (health <= 0)
             Die();
     }
 
@@ -205,6 +220,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (health > maxHealth)
             health = maxHealth;
         Debug.Log(health);
+
+        if (healthText != null)
+            healthText.text = "HP: " + health.ToString(); //temp
     }
 
     void UseRigidbody(bool _state)

@@ -106,9 +106,9 @@ public class Enemy : GameBehaviour
         //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         //if (state == EnemyState.Roam || state == EnemyState.Chase)
-        //transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
-        orientation.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
-        transform.forward = Vector3.Slerp(transform.forward, _PLAYER.transform.position, Time.deltaTime); // * rotationSpeed
+        transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        //orientation.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        //transform.forward = Vector3.Slerp(transform.forward, _PLAYER.transform.position, Time.deltaTime); // * rotationSpeed
 
         switch (state)
         {
