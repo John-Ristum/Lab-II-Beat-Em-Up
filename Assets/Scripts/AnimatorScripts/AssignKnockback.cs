@@ -37,6 +37,7 @@ public class AssignKnockback : StateMachineBehaviour
                 //enemy.freezeY = freezeY;
                 enemy.damage = damage;
                 enemy.isHeavy = isHeavy;
+                enemy.attackBlocked = false;
                 break;
         }
     }

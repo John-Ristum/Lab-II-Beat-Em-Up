@@ -3007,6 +3007,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveDir: {x: 0, y: 0, z: 0}
   attacking: 1
+  orientation: {fileID: 1471237816739047551}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
@@ -3015,6 +3016,7 @@ MonoBehaviour:
   position1: {x: 0, y: 0, z: 0}
   position2: {x: 0, y: 0, z: 0}
   enemyAngle: 0
+  onBoundary: 0
   walkSpeed: 1.5
   walkpointSet: 0
   inRange: 0
@@ -3024,11 +3026,12 @@ MonoBehaviour:
   minDistFromPlayer: 1
   maxDistFromDest: 1
   runSpeed: 6
-  attackDistance: 1
+  attackDistance: 1.5
   knockbackXZ: 0
   knockbackY: 0
   damage: 0
   isHeavy: 0
+  attackBlocked: 0
   canAttack: 1
   canDie: 1
 --- !u!195 &3746793959095066719
@@ -13138,7 +13141,7 @@ Transform:
   m_GameObject: {fileID: 6238772111902673762}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

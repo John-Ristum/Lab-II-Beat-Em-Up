@@ -18,6 +18,9 @@ public class PlayerAttack : GameBehaviour
 
     public GameObject blockCollider;
 
+    //bool blocking;
+    public float timer = 0f;
+
     void Update()
     {
         //Test player damage
@@ -29,21 +32,33 @@ public class PlayerAttack : GameBehaviour
         if (_PLAYER.state == PlayerState.Dead)
             return;
 
-        if (Input.GetButtonDown("AtkLight"))
-            LightAttack();
-        if (Input.GetButtonDown("AtkHeavy"))
-            HeavyAttack();
-        //if (Input.GetButtonDown("Block"))
-        //    Block();
-        //if (Input.GetButtonUp("Block"))
-        //    _PLAYER.state = PlayerState.Idle;
+        if (_PLAYER.state != PlayerState.Block || _PLAYER.state != PlayerState.Damage)
+        {
+            if (Input.GetButtonDown("AtkLight"))
+                LightAttack();
+            if (Input.GetButtonDown("AtkHeavy"))
+                HeavyAttack();
+            if (Input.GetAxisRaw("Block") > 0)
+                Block();
+        }
 
-        if (_PLAYER.state != PlayerState.Block)
-            ExitBlock();
+
+        if (_PLAYER.state == PlayerState.Block)
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            Debug.Log(timer);
+
+            if (Input.GetAxisRaw("Block") <= 0 && timer <= 0)
+                ExitBlock();
+        }
     }
 
-    void Attack()
+    public void Attack()
     {
+        Debug.Log("Attack");
         _PLAYER.state = PlayerState.Attack;
         _PLAYER.anim.applyRootMotion = true;
         _PLAYER.anim.SetBool("cantMove", true);
@@ -62,20 +77,21 @@ public class PlayerAttack : GameBehaviour
 
     void LightAttack()
     {
-        if (!canCombo)
-            return;
-
         type = AttackType.Light;
 
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
             _PLAYER.anim.CrossFadeInFixedTime("testATK1", 0.25f);
+            Attack();
             //ClearNearestEnemy();
         }
         else
+        {
+            if (!canCombo)
+                return;
             _PLAYER.anim.SetTrigger("atkLight");
-
-        Attack();
+            Attack();
+        }
     }
 
     void HeavyAttack()
@@ -98,6 +114,8 @@ public class PlayerAttack : GameBehaviour
 
     void Block()
     {
+        //timer = 2f;
+
         _PLAYER.state = PlayerState.Block;
         _PLAYER.anim.SetBool("blocking", true);
         blockCollider.SetActive(true);
@@ -105,6 +123,7 @@ public class PlayerAttack : GameBehaviour
 
     void ExitBlock()
     {
+        _PLAYER.state = PlayerState.Idle;
         _PLAYER.anim.SetBool("blocking", false);
         blockCollider.SetActive(false);
     }

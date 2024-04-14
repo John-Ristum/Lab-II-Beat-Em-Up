@@ -10,11 +10,11 @@ public class Hitbox : GameBehaviour
     Enemy enemy;
     
     public AttackingParty user;
-    bool attackBlocked;
+    //bool attackBlocked;
 
     private void Start()
     {
-        attackBlocked = false;
+        //attackBlocked = false;
 
         switch (user)
         {
@@ -92,18 +92,23 @@ public class Hitbox : GameBehaviour
                 if (enemy.canAttack == false)
                     return;
 
+                //attackBlocked = false;
+
                 if (other.CompareTag("BlockCollider"))
                 {
-                    attackBlocked = true;
+                    enemy.attackBlocked = true;
                 }
 
                 if (other.CompareTag("Player"))
                 {
                     Rigidbody enemyRB = GetComponentInParent<Rigidbody>();
 
-                    if (attackBlocked)
+                    if (enemy.attackBlocked)
                     {
                         _PLAYER.transform.LookAt(new Vector3(enemyRB.transform.position.x, _PLAYER.transform.position.y, enemyRB.transform.position.z));
+                        attack = other.GetComponent<PlayerAttack>();
+                        attack.timer = 0.5f;
+
                         return;
                     }
 

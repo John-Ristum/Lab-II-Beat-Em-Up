@@ -9,6 +9,7 @@ TagManager:
   - EnemySpawnPoints
   - Boundary
   - BlockCollider
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX

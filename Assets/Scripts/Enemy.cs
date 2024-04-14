@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyState { Roam, Chase, Attack, Damage, Die}
+public enum EnemyState { Roam, Chase, Attack, Damage, Die, PlayerDead}
 public class Enemy : GameBehaviour
 {
     public static event Action<GameObject> OnEmemyDie = null;
@@ -21,6 +21,7 @@ public class Enemy : GameBehaviour
     int randomNumber;
     float distToPlayer;
     public bool attacking;
+    public Transform orientation;
 
     public float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -53,6 +54,7 @@ public class Enemy : GameBehaviour
     public float knockbackY;
     public int damage;
     public bool isHeavy;
+    public bool attackBlocked;
 
     [Header("Debug")]
     public bool canAttack = true;
@@ -70,10 +72,11 @@ public class Enemy : GameBehaviour
     
     void Update()
     {
-
-
         //Checks if we are touching the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (state == EnemyState.PlayerDead)
+            return;
 
         moveDir = agent.desiredVelocity.normalized;
 
@@ -101,7 +104,11 @@ public class Enemy : GameBehaviour
 
         //transform.position - _PLAYER.transform.position
         //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+
+        //if (state == EnemyState.Roam || state == EnemyState.Chase)
+        //transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        orientation.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        transform.forward = Vector3.Slerp(transform.forward, _PLAYER.transform.position, Time.deltaTime); // * rotationSpeed
 
         switch (state)
         {
@@ -122,6 +129,8 @@ public class Enemy : GameBehaviour
     {
         if (state != EnemyState.Roam)
          return;
+
+        //attackBlocked = false;
 
         anim.SetBool("Chase", false);
         agent.speed = walkSpeed;
@@ -270,13 +279,20 @@ public class Enemy : GameBehaviour
 
     void PlayerIsDead()
     {
-        Debug.Log("RIP Bozo");
+        state = EnemyState.PlayerDead;
+        agent.speed = 0;
+        anim.SetTrigger("PlayerDead");
+
+        //Debug.Log("RIP Bozo");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boundary"))
             onBoundary = true;
+
+        if (other.CompareTag("OutOfBounds"))
+            Die();
     }
 
     private void OnTriggerExit(Collider other)
