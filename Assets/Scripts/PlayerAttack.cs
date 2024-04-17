@@ -81,14 +81,15 @@ public class PlayerAttack : GameBehaviour
 
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
+            _PLAYER.anim.ResetTrigger("atkLight");
+            _PLAYER.anim.ResetTrigger("atkHeavy");
+
             _PLAYER.anim.CrossFadeInFixedTime("testATK1", 0.25f);
             Attack();
             //ClearNearestEnemy();
         }
-        else
+        else if (canCombo)
         {
-            if (!canCombo)
-                return;
             _PLAYER.anim.SetTrigger("atkLight");
             Attack();
         }
@@ -96,20 +97,19 @@ public class PlayerAttack : GameBehaviour
 
     void HeavyAttack()
     {
-        if (!canCombo)
-            return;
-
         type = AttackType.Heavy;
 
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
             _PLAYER.anim.CrossFadeInFixedTime("testFin0", 0.25f);
+            Attack();
             //ClearNearestEnemy();
         }
-        else
+        else if (canCombo)
+        {
             _PLAYER.anim.SetTrigger("atkHeavy");
-
-        Attack();
+            Attack();
+        }
     }
 
     void Block()
