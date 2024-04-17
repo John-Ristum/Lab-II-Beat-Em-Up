@@ -40,6 +40,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public int maxHealth = 100;
     public bool cantDie;
     public Animator anim;
+    AudioSource audioSource;
 
     public List<GameObject> enemiesInRange;
     public GameObject targetEnemy;
@@ -68,6 +69,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rbCollider = GetComponent<Collider>();
+        audioSource = GetComponent<AudioSource>();
         
         //UseRigidbody(false);
 
@@ -211,6 +213,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     {
         state = PlayerState.Dead;
         anim.SetTrigger("Die");
+        _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         PlayerDeath();
     }
 

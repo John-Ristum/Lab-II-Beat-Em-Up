@@ -22,6 +22,7 @@ public class Enemy : GameBehaviour
     float distToPlayer;
     public bool attacking;
     public Transform orientation;
+    AudioSource audioSource;
 
     public float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -66,6 +67,7 @@ public class Enemy : GameBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(PositionCheck());
     }
 
@@ -270,6 +272,7 @@ public class Enemy : GameBehaviour
     {
         state = EnemyState.Die;
 
+        _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         StopAllCoroutines();

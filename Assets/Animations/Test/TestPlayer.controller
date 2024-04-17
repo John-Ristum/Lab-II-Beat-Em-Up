@@ -1201,7 +1201,7 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6787973234327007761}
-    m_Position: {x: -140, y: -90, z: 0}
+    m_Position: {x: -150, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7340456104371830316}
     m_Position: {x: 110, y: -90, z: 0}
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   user: 0
   knockbackXZ: 200
   knockbackY: 200
-  damage: 10
+  damage: 1000
   isHeavy: 1
   freezeY: 0
 --- !u!114 &6990805935787149673

@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        _AM.PlaySound(_AM.soundtrack, _AM.audioSource, 0.8f);
     }
 
     // Update is called once per frame
