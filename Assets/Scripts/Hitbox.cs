@@ -79,6 +79,9 @@ public class Hitbox : GameBehaviour
                     enemy.TakeDamage(attack.damage);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
 
+                    //Play SFX
+                    _AM.PlaySound(attack.attackLandSFX, _PLAYER.audioSource);
+
                     //Determine direction of knockback
                     Vector3 knockbackDirection = enemyRB.transform.position - _PLAYER.transform.position;
                     //Resets velocity to prevent knockback compounding
@@ -107,7 +110,7 @@ public class Hitbox : GameBehaviour
                     {
                         _PLAYER.transform.LookAt(new Vector3(enemyRB.transform.position.x, _PLAYER.transform.position.y, enemyRB.transform.position.z));
                         attack = other.GetComponent<PlayerAttack>();
-                        attack.timer = 0.5f;
+                        attack.blockTimer = 0.5f;
 
                         return;
                     }

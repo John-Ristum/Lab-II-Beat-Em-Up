@@ -40,7 +40,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public int maxHealth = 100;
     public bool cantDie;
     public Animator anim;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     public List<GameObject> enemiesInRange;
     public GameObject targetEnemy;
@@ -151,7 +151,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         #region Method B
         inputDirection = new Vector3(x, 0f, z);
 
-        if (inputDirection.magnitude >= 0.1f)
+        if (inputDirection.magnitude >= 0.1f && state == PlayerState.Idle)
         {
             if (inputDirection.magnitude > 0.6)
                 speed = runSpeed;
@@ -212,6 +212,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public void Die()
     {
         state = PlayerState.Dead;
+        GetComponent<MannequinExplode>().Explode();
         anim.SetTrigger("Die");
         _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         PlayerDeath();

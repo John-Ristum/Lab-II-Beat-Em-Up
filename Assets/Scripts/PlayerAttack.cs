@@ -2,24 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerType { Normal, Placeholder}
 public enum AttackType { Light, Heavy}
 
 public class PlayerAttack : GameBehaviour
 {
+    public PlayerType playerType;
     public AttackType type;
 
     public bool canCombo;
 
+    public AudioClip attackLandSFX;
+
+    [Header("Knockback & Damage")]
     public float knockbackXZ;
     public float knockbackY;
     public int damage;
     public bool isHeavy;
     public bool freezeY;
 
-    public GameObject blockCollider;
+    [Header("Attack Dash")]
+    public float atkDashDist = 1f;
+    public float atkDashTime = 0.25f;
+    float atkStartTime;
+    public int atkDashNum;
+    public int atkDashLimit = 2;
+    Vector3 atkDashDir;
 
-    //bool blocking;
-    public float timer = 0f;
+    [Header("Blocking")]
+    public GameObject blockCollider;
+    public float blockTimer = 0f;
 
     void Update()
     {
@@ -45,13 +57,13 @@ public class PlayerAttack : GameBehaviour
 
         if (_PLAYER.state == PlayerState.Block)
         {
-            if (timer > 0)
+            if (blockTimer > 0)
             {
-                timer -= Time.deltaTime;
+                blockTimer -= Time.deltaTime;
             }
-            Debug.Log(timer);
+            Debug.Log(blockTimer);
 
-            if (Input.GetAxisRaw("Block") <= 0 && timer <= 0)
+            if (Input.GetAxisRaw("Block") <= 0 && blockTimer <= 0)
                 ExitBlock();
         }
     }
@@ -60,7 +72,8 @@ public class PlayerAttack : GameBehaviour
     {
         Debug.Log("Attack");
         _PLAYER.state = PlayerState.Attack;
-        _PLAYER.anim.applyRootMotion = true;
+        if (playerType == PlayerType.Placeholder)
+            _PLAYER.anim.applyRootMotion = true;
         _PLAYER.anim.SetBool("cantMove", true);
         _PLAYER.inputDirection = new Vector3(0, 0, 0);
 
@@ -73,6 +86,12 @@ public class PlayerAttack : GameBehaviour
         //makes player face enemy if one is in range
         if (_PLAYER.targetEnemy != null)
             _PLAYER.transform.LookAt(new Vector3(_PLAYER.targetEnemy.transform.position.x, _PLAYER.transform.position.y, _PLAYER.targetEnemy.transform.position.z));    //transform.localPosition was causing problems when target was parented to other object
+
+        //if (playerType == PlayerType.Normal)
+        //{
+        //    StartCoroutine(AttackDash());
+        //    atkDashNum++;
+        //}
     }
 
     void LightAttack()
@@ -84,7 +103,7 @@ public class PlayerAttack : GameBehaviour
             _PLAYER.anim.ResetTrigger("atkLight");
             _PLAYER.anim.ResetTrigger("atkHeavy");
 
-            _PLAYER.anim.CrossFadeInFixedTime("testATK1", 0.25f);
+            _PLAYER.anim.CrossFadeInFixedTime("ATK1", 0.25f);
             Attack();
             //ClearNearestEnemy();
         }
@@ -101,7 +120,7 @@ public class PlayerAttack : GameBehaviour
 
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
-            _PLAYER.anim.CrossFadeInFixedTime("testFin0", 0.25f);
+            _PLAYER.anim.CrossFadeInFixedTime("Fin0", 0.25f);
             Attack();
             //ClearNearestEnemy();
         }
@@ -109,6 +128,35 @@ public class PlayerAttack : GameBehaviour
         {
             _PLAYER.anim.SetTrigger("atkHeavy");
             Attack();
+        }
+    }
+
+    public void AttackDash()
+    {
+        StopCoroutine(AttackDashCo());
+        StartCoroutine(AttackDashCo());
+    }
+
+    IEnumerator AttackDashCo()
+    {
+        //Gets direction player is facing
+        atkDashDir = _PLAYER.transform.forward;
+
+        atkStartTime = Time.time;
+
+        int atkDashNum2 = atkDashNum;
+
+        //_PLAYER.anim.SetTrigger("QuickStep");
+
+        //Quickstep movement
+        while (Time.time < atkStartTime + atkDashTime)
+        {
+            _PLAYER.controller.Move(atkDashDir * atkDashDist * Time.deltaTime);
+
+            //if (atkDashNum2 != atkDashNum)
+            //    break;
+
+            yield return null;
         }
     }
 
@@ -150,6 +198,6 @@ public class PlayerAttack : GameBehaviour
 
     public void ResetAnimation()
     {
-        _PLAYER.anim.CrossFadeInFixedTime("testIdle", 0.25f);
+        _PLAYER.anim.CrossFadeInFixedTime("Idle", 0.25f);
     }
 }

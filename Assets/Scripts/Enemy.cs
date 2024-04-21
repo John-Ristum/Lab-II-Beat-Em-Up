@@ -225,7 +225,11 @@ public class Enemy : GameBehaviour
         health -= _damage;
 
         if (health <= 0 && canDie)
-            Die();
+        {
+            StopAllCoroutines();
+            StartCoroutine(Die());
+        }
+            
         else
         {
             state = EnemyState.Damage;
@@ -268,15 +272,17 @@ public class Enemy : GameBehaviour
         _EM.enemiesAttacking.Remove(this.gameObject);
     }
 
-    void Die()
+    IEnumerator Die()
     {
         state = EnemyState.Die;
 
         _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
-        StopAllCoroutines();
         OnEmemyDie?.Invoke(this.gameObject);
+
+        yield return new WaitForSeconds(0.5f);
+
         Destroy(this.gameObject);
     }
 

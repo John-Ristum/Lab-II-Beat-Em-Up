@@ -3322,6 +3322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb027df71e583946907abe8fc20f966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerType: 1
   type: 0
   canCombo: 1
   knockbackXZ: 0
@@ -3329,6 +3330,10 @@ MonoBehaviour:
   damage: 0
   isHeavy: 0
   freezeY: 0
+  atkDashSpeed: 10
+  atkDashTime: 0.25
+  atkDashNum: 0
+  atkDashLimit: 2
   blockCollider: {fileID: 3515959435318904860}
   timer: 0
 --- !u!114 &7838146068658080187
