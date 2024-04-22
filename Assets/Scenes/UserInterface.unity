@@ -283,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &238106093
 RectTransform:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &497487678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1914950628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1115,6 +1115,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &2074272563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.030716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4467897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11102568
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362558596361416328, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779731978889025167, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
+      propertyPath: m_Name
+      value: UICamera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3d533b7df578c6428c8d9b1b68f4413, type: 3}
 --- !u!1 &2114649995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2114649996
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1290,3 +1347,4 @@ SceneRoots:
   - {fileID: 1931032711}
   - {fileID: 497487681}
   - {fileID: 45598375}
+  - {fileID: 2074272563}

@@ -8,17 +8,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CanTinColour
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 60e29b7951f20da47b11861d166b7036, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - _OVERLAYMODE1_NONE
-  - _OVERLAYMODE_NONE
+  - _OVERLAYMODE_HATCHING
   - _USEHATCHINGCONSTANTSCALE_ON
-  - _USELIGHTRAMP_STEP
-  - _USEOUTLINE_ON
+  - _USELIGHTRAMP_DIFFUSERAMP
   - _USESPECULAR_ON
+  m_InvalidKeywords:
+  - _USEADAPTIVESCREENUVSWARP_ON
+  - _USEDIFFUSEWARP_ON
+  - _USEOUTLINE_ON
+  - _USESCREENUVSWARP_ON
+  - _USESCREENUVS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -46,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseWarpNoise:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e65f4fcdb4894f14a8a82f7eff8299e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -66,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LightRampTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5160dd9a9b5f6ea4e8e4e8789eee2bd9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -118,21 +122,21 @@ Material:
     - _DiffuseWarpBrightnessOffset: 1.12
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.126
     - _GlossyReflections: 1
     - _HalftoneEdgeOffset: 0.1
     - _HalftoneSmoothness: 0.3
     - _HalftoneThreshold: 0.1
     - _HalftoneToonAffect: 0
     - _HaltonePatternSize: 0
-    - _IndirectLightAffectOnHatch: 0
-    - _IndirectLightStrength: 1
+    - _IndirectLightAffectOnHatch: 1
+    - _IndirectLightStrength: 0.407
     - _InverseMask: 0
     - _LightRampOffset: 0
     - _Lighten: 0
-    - _MainLightIntesity: 1
+    - _MainLightIntesity: 1.46
     - _MaxScaleDependingOnCamera: 1
-    - _Metallic: 0.705
+    - _Metallic: 0
     - _Mode: 0
     - _NormalMapStrength: 1
     - _OcclusionStrength: 1
@@ -141,7 +145,7 @@ Material:
     - _OutlineNoiseScale: 10
     - _OutlineTextureStrength: 0
     - _OutlineType: 0
-    - _OverlayMode: 0
+    - _OverlayMode: 2
     - _OverlayMode1: 0
     - _OverlayRotation: 0
     - _OverlayUVTilling: 0
@@ -156,23 +160,23 @@ Material:
     - _SideShineAmount: 0.2717647
     - _SideShineHardness: 0
     - _SideShineIntensity: 1
-    - _SmoothnessMultiplier: 1
+    - _SmoothnessMultiplier: 1.04
     - _SmoothnessTextureChannel: 0
-    - _SpecularFaloff: 0
+    - _SpecularFaloff: 0.223
     - _SpecularHighlights: 1
     - _SpecularMaskRotation: 0
     - _SpecularMaskScale: 1
     - _SpecularMaskStrength: 0.1856417
-    - _SpecularPosterizeSteps: 15
+    - _SpecularPosterizeSteps: 0
     - _SpecularShadowMask: 0
     - _SrcBlend: 1
     - _StepHalftoneTexture: 0
     - _StepOffset: 0
     - _Strength: 0
-    - _Thicnkess: 0
+    - _Thicnkess: 0.0001
     - _UVAnimationSpeed: 2
     - _UVAnimationSpeedSpec: 2
-    - _UVAnimationSpeedWarp: 2
+    - _UVAnimationSpeedWarp: 0
     - _UVScrollSpeed: 0
     - _UVScrollSpeedSpec: 0
     - _UVScrollSpeedWarp: 0
@@ -181,31 +185,31 @@ Material:
     - _UVSrcrollAngleSpec: 0
     - _UVSrcrollAngleWarp: 0
     - _UseAdaptiveScreenUvs: 0
-    - _UseAdaptiveScreenUvsWarp: 0
+    - _UseAdaptiveScreenUvsWarp: 1
     - _UseAdaptiveUvsSpecular: 0
     - _UseBacklight: 0
-    - _UseDiffuseWarp: 0
+    - _UseDiffuseWarp: 1
     - _UseDiffuseWarpAsOverlay: 0
     - _UseDynamicOutline: 0
     - _UseEmission: 0
     - _UseEnvironmentRefletion: 0
     - _UseHatchingConstantScale: 1
-    - _UseLightRamp: 0
+    - _UseLightRamp: 1
     - _UseOutline: 1
     - _UsePureSketch: 0
     - _UseRimLight: 0
-    - _UseScreenUvs: 0
+    - _UseScreenUvs: 1
     - _UseScreenUvsSpecular: 0
-    - _UseScreenUvsWarp: 0
+    - _UseScreenUvsWarp: 1
     - _UseSpecular: 1
     - _UseSpecularMask: 0
-    - _WarpStrength: 0
+    - _WarpStrength: 0.78
     - _WarpTextureRotation: 0
-    - _WarpTextureScale: 1
+    - _WarpTextureScale: 3.07
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
+    - _Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalftoneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
@@ -213,5 +217,5 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 0}
     - _RimShadowColor: {r: 0, g: 0.05551431, b: 0.9622642, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecColor: {r: 1, g: 0.810771, b: 0.7150943, a: 1}
   m_BuildTextureStacks: []
