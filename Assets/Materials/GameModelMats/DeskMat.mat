@@ -128,7 +128,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0
-    - _AdaptiveThicnkess: 0.229
+    - _AdaptiveThicnkess: 0.03
     - _AdditionalLightsAmount: 1
     - _AdditionalLightsFaloff: 1
     - _AdditionalLightsIntesity: 1
@@ -214,7 +214,7 @@ Material:
     - _StepOffset: 0
     - _Strength: 0
     - _Surface: 0
-    - _Thicnkess: 0.0213
+    - _Thicnkess: 0.06
     - _UVAnimationSpeed: 2
     - _UVAnimationSpeedSpec: 2
     - _UVAnimationSpeedWarp: 0

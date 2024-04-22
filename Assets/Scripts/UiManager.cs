@@ -21,12 +21,16 @@ public class UiManager : Singleton<UiManager>
     public GameObject gameScreen;
 
 
-
+    public GameObject quitAreYouSure;
 
     public int maxHealth = 100;
     public int health = 100;
     public Text healthText;
     public Scrollbar healthScrollbar;
+
+    public int healthUi;
+
+    private bool escPress = false;
 
 
     void Start()
@@ -47,9 +51,33 @@ public class UiManager : Singleton<UiManager>
 
         gameScreen.SetActive(false);
 
-        UpdateHealthUI();
+        quitAreYouSure.SetActive(false);
+
+
+
+
+
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("ESC Pressed");
+            if (startingScreen.activeSelf && !mainMenu.activeSelf && !gameScreen.activeSelf)
+            {
+                QuitGame();
+            }
+            else if (mainMenu.activeSelf && !startingScreen.activeSelf && !gameScreen.activeSelf)
+            {
+                quitAreYouSure.SetActive(true);
+            }
+            else if (gameScreen.activeSelf && !mainMenu.activeSelf && !startingScreen.activeSelf)
+            {
+                InGamePause();
+            }
+        }
+    }
 
     IEnumerator WaitForAnimToEnd(float waitTime)
     {
@@ -63,28 +91,60 @@ public class UiManager : Singleton<UiManager>
         mainMenu.SetActive(true);
     }
 
-
-
-    public void RecoverHealth(int _recAmount)
+    public void UpdateHealthUI()
     {
-        health += _recAmount;
-        if (health > maxHealth)
-            health = maxHealth;
-
-        UpdateHealthUI();
+        Debug.Log("health " + healthUi);
     }
 
-    private void UpdateHealthUI()
-    {
-        if (healthText != null)
-            healthText.text = "HP: " + health.ToString();
+    //Pressing Esc Different Functions For Different States
 
-        if (healthScrollbar != null)
-        {
-            // Calculate the percentage of health remaining
-            float healthPercentage = (float)health / maxHealth;
-            // Set the size of the scrollbar based on the percentage
-            healthScrollbar.size = healthPercentage;
-        }
+
+
+    //Main Menu Buttons
+    public void StartGame()
+    {
+
     }
+
+    public void OptionsMainMenu()
+    {
+
+    }
+
+    public void Credits()
+    {
+
+    }
+
+    //In Game Buttons
+
+    public void InGamePause()
+    {
+
+    }
+
+
+
+
+
+
+
+
+    //Quit Buttons
+
+    public void QuitYes()
+    {
+        QuitGame();
+    }
+
+    public void QuitNo()
+    {
+        quitAreYouSure.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
+    } 
 }

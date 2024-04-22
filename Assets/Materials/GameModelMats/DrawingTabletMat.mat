@@ -70,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LightRampTexture:
-        m_Texture: {fileID: 2800000, guid: 5160dd9a9b5f6ea4e8e4e8789eee2bd9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5d8bf5f0de7f45e48990ce36a057716a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -205,7 +205,7 @@ Material:
     - _UseSpecularMask: 0
     - _WarpStrength: 0.78
     - _WarpTextureRotation: 0
-    - _WarpTextureScale: 3.07
+    - _WarpTextureScale: 1.25
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:

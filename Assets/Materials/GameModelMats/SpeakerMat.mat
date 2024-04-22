@@ -19,6 +19,7 @@ Material:
   - _USESPECULAR_ON
   m_InvalidKeywords:
   - _USEADAPTIVESCREENUVSWARP_ON
+  - _USEDIFFUSEWARPASOVERLAY_ON
   - _USEDIFFUSEWARP_ON
   - _USEOUTLINE_ON
   - _USESCREENUVSWARP_ON
@@ -70,7 +71,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LightRampTexture:
-        m_Texture: {fileID: 2800000, guid: 5160dd9a9b5f6ea4e8e4e8789eee2bd9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f7095e4437f3cd4e95006e0b36ccdf1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -122,7 +123,7 @@ Material:
     - _DiffuseWarpBrightnessOffset: 1.12
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.151
+    - _Glossiness: 0.2
     - _GlossyReflections: 1
     - _HalftoneEdgeOffset: 0.1
     - _HalftoneSmoothness: 0.3
@@ -130,9 +131,9 @@ Material:
     - _HalftoneToonAffect: 0
     - _HaltonePatternSize: 0
     - _IndirectLightAffectOnHatch: 1
-    - _IndirectLightStrength: 0.529
+    - _IndirectLightStrength: 0.14
     - _InverseMask: 0
-    - _LightRampOffset: 0
+    - _LightRampOffset: -0.11
     - _Lighten: 0
     - _MainLightIntesity: 1.46
     - _MaxScaleDependingOnCamera: 1
@@ -189,7 +190,7 @@ Material:
     - _UseAdaptiveUvsSpecular: 0
     - _UseBacklight: 0
     - _UseDiffuseWarp: 1
-    - _UseDiffuseWarpAsOverlay: 0
+    - _UseDiffuseWarpAsOverlay: 1
     - _UseDynamicOutline: 0
     - _UseEmission: 0
     - _UseEnvironmentRefletion: 0
@@ -203,9 +204,9 @@ Material:
     - _UseScreenUvsWarp: 1
     - _UseSpecular: 1
     - _UseSpecularMask: 0
-    - _WarpStrength: 0.78
+    - _WarpStrength: 1
     - _WarpTextureRotation: 0
-    - _WarpTextureScale: 3.07
+    - _WarpTextureScale: 1.02
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:

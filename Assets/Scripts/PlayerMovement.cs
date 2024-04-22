@@ -202,8 +202,17 @@ public class PlayerMovement : Singleton<PlayerMovement>
         health -= _damage;
         Debug.Log(health);
 
-        if (healthText != null)
-            healthText.text = "HP: " + health.ToString(); //temp
+        //if (healthText != null)
+        //{
+        //    healthText.text = "HP: " + health.ToString(); //temp
+        //}
+
+        if (health > 0)
+        {
+            _UM.healthUi = health;
+            _UM.UpdateHealthUI();
+        }
+
 
         if (health <= 0)
             Die();
