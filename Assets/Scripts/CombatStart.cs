@@ -5,6 +5,8 @@ using UnityEngine;
 public class CombatStart : GameBehaviour
 {
     public GameObject bridge;
+    public GameObject oldBridge;
+    public GameObject oldAreaBoundary;
 
     public List<Transform> spawnPoints;
     bool combatStarted;
@@ -22,6 +24,10 @@ public class CombatStart : GameBehaviour
 
             if (bridge != null)
                 bridge.GetComponent<ActivateBridge>().EnableEvent();
+            if (oldBridge != null)
+                oldBridge.GetComponent<Animator>().SetTrigger("CloseOldBridge");
+            if (oldAreaBoundary != null)
+                oldAreaBoundary.SetActive(true);
 
             _EM.spawnPoints = spawnPoints;
             _EM.SpawnEnemies();
