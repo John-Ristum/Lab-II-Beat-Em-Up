@@ -53,6 +53,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
 
+    public bool inCutscene;
     bool onBoundary;
 
     public TMP_Text healthText; //temp
@@ -95,7 +96,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
 
-            if (state != PlayerState.Damage)
+        if (state != PlayerState.Damage)
             _GM.CamUpdateFixed();
 
         //test change layer
@@ -127,7 +128,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
                 controller.Move(velocity * Time.deltaTime);
         }
 
-        if (state == PlayerState.Dead)
+        if (state == PlayerState.Dead || inCutscene)
             return;
 
         //Move the player

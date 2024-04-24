@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivateBridge : MonoBehaviour
+public class ActivateBridge : GameBehaviour
 {
+    public float animWaitTime = 2f;
+    public GameObject cutsceneCam;
+
     public GameObject oldBoundary;
     public GameObject newBoundary;
 
-    void ContinueLevel()
+    void OpenNextArea()
     {
-        Animator anim = GetComponent<Animator>();
-        anim.SetTrigger("ActivateBridge");
+        StartCoroutine(StartCutscene(animWaitTime));
 
         if (oldBoundary != null && newBoundary != null)
         {
@@ -19,13 +21,38 @@ public class ActivateBridge : MonoBehaviour
         } 
     }
 
+    IEnumerator StartCutscene(float _waitTime)
+    {
+        _PLAYER.inCutscene = true;
+
+        yield return new WaitForSeconds(1f);
+
+        cutsceneCam.SetActive(true);
+
+        yield return new WaitForSeconds(_waitTime);
+
+        Animator anim = GetComponent<Animator>();
+        anim.SetTrigger("ActivateBridge");
+    }
+
+    IEnumerator EndCutscene(float _waitTime)
+    {
+        yield return new WaitForSeconds(1f);
+
+        cutsceneCam.SetActive(false);
+
+        yield return new WaitForSeconds(_waitTime);
+
+        _PLAYER.inCutscene = false;
+    }
+
     public void EnableEvent()
     {
-        EnemyManager.AllEnemiesDead += ContinueLevel;
+        EnemyManager.AllEnemiesDead += OpenNextArea;
     }
 
     private void OnDisable()
     {
-        EnemyManager.AllEnemiesDead -= ContinueLevel;
+        EnemyManager.AllEnemiesDead -= OpenNextArea;
     }
 }

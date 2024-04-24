@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class RecenterCamera : MonoBehaviour
+public class RecenterCamera : GameBehaviour
 {
     private CinemachineFreeLook cinCam;
 
@@ -14,6 +14,9 @@ public class RecenterCamera : MonoBehaviour
 
     void Update()
     {
+        if (_PLAYER.inCutscene == true)
+            return;
+
         if (Input.GetButtonDown("RecenterCam"))
         {
             cinCam.m_RecenterToTargetHeading.m_enabled = true;

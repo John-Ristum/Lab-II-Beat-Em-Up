@@ -41,7 +41,7 @@ public class PlayerAttack : GameBehaviour
         if (Input.GetKeyDown("9"))
             _PLAYER.RecoverHealth(10);
 
-        if (_PLAYER.state == PlayerState.Dead)
+        if (_PLAYER.state == PlayerState.Dead || _PLAYER.inCutscene == true)
             return;
 
         if (_PLAYER.state != PlayerState.Block || _PLAYER.state != PlayerState.Damage)

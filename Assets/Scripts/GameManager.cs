@@ -6,11 +6,12 @@ using Cinemachine;
 public class GameManager : Singleton<GameManager>
 {
     public CinemachineBrain cineBrain;
+    public float OSTVolume = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        _AM.PlaySound(_AM.soundtrack, _AM.audioSource, 0.8f);
+        _AM.PlaySound(_AM.soundtrack, _AM.audioSource, 0.8f, OSTVolume);
     }
 
     // Update is called once per frame
