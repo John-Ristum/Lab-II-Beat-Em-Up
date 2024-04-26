@@ -38,6 +38,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     [Header("Misc")]
     public int health = 100;
     public int maxHealth = 100;
+    public HealthBar healthBar;
     public bool cantDie;
     public Animator anim;
     public AudioSource audioSource;
@@ -73,8 +74,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
         audioSource = GetComponent<AudioSource>();
         
         //UseRigidbody(false);
-
-        ToggleCursorLockState();
     }
 
     private void Update()
@@ -90,11 +89,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
         }
         //ToggleCursorLockState();
 
-        if (Input.GetKeyDown("r"))
-            SceneManager.LoadScene("Level");
+        //if (Input.GetKeyDown("r"))
+        //    SceneManager.LoadScene("Level");
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //    Application.Quit();
 
         if (state != PlayerState.Damage)
             _GM.CamUpdateFixed();
@@ -154,7 +153,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         if (inputDirection.magnitude >= 0.1f && state == PlayerState.Idle)
         {
-            if (inputDirection.magnitude > 0.6)
+            if (inputDirection.magnitude > 0.6 && Input.GetAxisRaw("Walk") <= 0)
                 speed = runSpeed;
             else
                 speed = walkSpeed;
@@ -175,7 +174,15 @@ public class PlayerMovement : Singleton<PlayerMovement>
             controller.Move(Vector3.down * controller.height / 2 * slopeForce * Time.deltaTime);
 
         //Handles animation
-        anim.SetFloat("movementSpeed", inputDirection.magnitude);
+        if (Input.GetAxisRaw("Walk") <= 0)
+            anim.SetFloat("movementSpeed", inputDirection.magnitude);
+        else
+        {
+            if (inputDirection.magnitude >= 0.1f)
+                anim.SetFloat("movementSpeed", 0.3f);
+            else
+                anim.SetFloat("movementSpeed", 0f);
+        } 
     }
 
     private bool OnSlope()
@@ -201,19 +208,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         anim.SetTrigger("Damage");
         health -= _damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         Debug.Log(health);
 
         //if (healthText != null)
         //{
         //    healthText.text = "HP: " + health.ToString(); //temp
         //}
-
-        if (health > 0)
-        {
-            _UM.healthUi = health;
-            _UM.UpdateHealthUI();
-        }
-
 
         if (health <= 0)
             Die();
@@ -233,6 +234,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         health += _recAmount;
         if (health > maxHealth)
             health = maxHealth;
+        healthBar.UpdateHealthBar(health, maxHealth);
         Debug.Log(health);
 
         if (healthText != null)
@@ -245,14 +247,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
         rb.isKinematic = !_state;
         rb.useGravity = _state;
         rbCollider.enabled = _state;
-    }
-
-    void ToggleCursorLockState()
-    {
-        if (Cursor.lockState == CursorLockMode.Locked)
-            Cursor.lockState = CursorLockMode.None;
-        else if (Cursor.lockState == CursorLockMode.None)
-            Cursor.lockState = CursorLockMode.Locked;
     }
 
     void ActivateRB()

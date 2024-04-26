@@ -33,15 +33,25 @@ public class EnemyManager : Singleton<EnemyManager>
         {
             GameObject enemy = Instantiate(enemyTypes[0], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation);
             enemies.Add(enemy);
+
+            if (i == spawnPoints.Count - 1)
+            {
+                _UI.enemyCountText.gameObject.SetActive(true);
+                _UI.UpdateEnemyCount(enemies.Count);
+            }  
         }
     }
 
     public void KillEnemy(GameObject _enemy)
     {
         enemies.Remove(_enemy);
+        _UI.UpdateEnemyCount(enemies.Count);
 
-        if(enemies.Count == 0)
+        if (enemies.Count == 0)
+        {
+            _UI.enemyCountText.gameObject.SetActive(false);
             AllEnemiesDead();
+        }   
     }
 
     private void OnEnable()

@@ -12,12 +12,23 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         _AM.PlaySound(_AM.soundtrack, _AM.audioSource, 0.8f, OSTVolume);
+
+        if (Cursor.lockState == CursorLockMode.None)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ToggleCursorLockState()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.None;
+        else if (Cursor.lockState == CursorLockMode.None)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void CamUpdateLate()

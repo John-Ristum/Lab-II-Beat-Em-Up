@@ -24,6 +24,7 @@ public class ActivateBridge : GameBehaviour
     IEnumerator StartCutscene(float _waitTime)
     {
         _PLAYER.inCutscene = true;
+        _PLAYER.anim.SetFloat("movementSpeed", 0f);
 
         yield return new WaitForSeconds(1f);
 

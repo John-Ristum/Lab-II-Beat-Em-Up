@@ -24,6 +24,9 @@ public class CombatStart : GameBehaviour
 
             if (bridge != null)
                 bridge.GetComponent<ActivateBridge>().EnableEvent();
+            else
+                _UI.EnableEvent();
+
             if (oldBridge != null)
                 oldBridge.GetComponent<Animator>().SetTrigger("CloseOldBridge");
             if (oldAreaBoundary != null)

@@ -11,7 +11,8 @@ public class Enemy : GameBehaviour
 
     [Header("General")]
     public EnemyState state;
-    public float health = 100;
+    public int health = 100;
+    public int maxHealth = 100;
     public Animator anim;
     public NavMeshAgent agent;
     public Transform groundCheck;
@@ -23,6 +24,7 @@ public class Enemy : GameBehaviour
     public bool attacking;
     public Transform orientation;
     AudioSource audioSource;
+    HealthBar healthBar;
 
     public float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -68,6 +70,7 @@ public class Enemy : GameBehaviour
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        healthBar = GetComponentInChildren<HealthBar>();
         StartCoroutine(PositionCheck());
     }
 
@@ -79,6 +82,8 @@ public class Enemy : GameBehaviour
 
         if (state == EnemyState.PlayerDead)
             return;
+
+        healthBar.gameObject.transform.LookAt(_PLAYER.cam);
 
         moveDir = agent.desiredVelocity.normalized;
 
@@ -223,6 +228,7 @@ public class Enemy : GameBehaviour
     public void TakeDamage(int _damage)
     {
         health -= _damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
 
         if (health <= 0 && canDie)
         {
@@ -275,6 +281,8 @@ public class Enemy : GameBehaviour
     IEnumerator Die()
     {
         state = EnemyState.Die;
+
+        healthBar.gameObject.SetActive(false);
 
         _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         agent.speed = 0;

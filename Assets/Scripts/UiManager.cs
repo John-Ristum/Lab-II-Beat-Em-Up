@@ -2,149 +2,122 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiManager : Singleton<UiManager>
 {
+    [Header("Pause Screen")]
+    public GameObject pausePanels;
+    public GameObject pausedMenu;
+    public GameObject optionsMenu;
+    public GameObject controlsMenu;
+    public GameObject quitPanel;
 
-    public GameObject blackBackground;
-    public GameObject creamGradient;
-    public GameObject logoCream;
-    public GameObject logoNormal;
+    [Header("Win Screen")]
+    public GameObject winPanel;
 
-    public GameObject GamesText;
+    [Header("Lose Screen")]
+    public GameObject losePanel;
 
-    public GameObject startingScreen;
+    [Header("Enemy Count")]
+    public TMP_Text enemyCountText;
 
-
-    public GameObject mainMenu;
-
-    public GameObject gameScreen;
-
-
-    public GameObject quitAreYouSure;
-
-    public int maxHealth = 100;
-    public int health = 100;
-    public Text healthText;
-    public Scrollbar healthScrollbar;
-
-    public int healthUi;
-
-    private bool escPress = false;
-
+    bool isPaused = false;
+    bool gameWon = false;
 
     void Start()
     {
-        startingScreen.SetActive(true);
-
-        StartCoroutine(WaitForAnimToEnd(4.5f));
-
-        blackBackground.SetActive(true);
-        creamGradient.SetActive(true);
-        GamesText.SetActive(true);
-
-        logoCream.SetActive(true);
-        logoNormal.SetActive(true);
-
-
-        mainMenu.SetActive(false);
-
-        gameScreen.SetActive(false);
-
-        quitAreYouSure.SetActive(false);
-
-
-
-
-
+        pausePanels.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Pause"))
         {
-            Debug.Log("ESC Pressed");
-            if (startingScreen.activeSelf && !mainMenu.activeSelf && !gameScreen.activeSelf)
-            {
-                QuitGame();
-            }
-            else if (mainMenu.activeSelf && !startingScreen.activeSelf && !gameScreen.activeSelf)
-            {
-                quitAreYouSure.SetActive(true);
-            }
-            else if (gameScreen.activeSelf && !mainMenu.activeSelf && !startingScreen.activeSelf)
-            {
-                InGamePause();
-            }
+            TogglePause();
         }
     }
 
-    IEnumerator WaitForAnimToEnd(float waitTime)
+    public void TogglePause()
     {
-        // Wait for the specified duration
-        yield return new WaitForSeconds(waitTime);
+        if (_PLAYER.state == PlayerState.Dead || gameWon)
+            return;
 
-        // Do something after waiting
-        Debug.Log("Waited for " + waitTime + " seconds. Now do something.");
+        isPaused = !isPaused;
 
-        startingScreen.SetActive(false);
-        mainMenu.SetActive(true);
+        if (isPaused)
+        {
+            pausePanels.SetActive(true);
+            pausedMenu.SetActive(true);
+
+            _GM.ToggleCursorLockState();
+            Time.timeScale = 0;
+
+            _AM.audioSource.volume = _GM.OSTVolume / 2;
+        }
+        else
+        {
+            optionsMenu.SetActive(false);
+            controlsMenu.SetActive(false);
+            quitPanel.SetActive(false);
+
+            pausePanels.SetActive(false);
+
+            _GM.ToggleCursorLockState();
+            Time.timeScale = 1;
+
+            _AM.audioSource.volume = _GM.OSTVolume;
+        }
     }
 
-    public void UpdateHealthUI()
+    public void UpdateEnemyCount(int _enemyCount)
     {
-        Debug.Log("health " + healthUi);
+        enemyCountText.text = "Enemies Remaining - " + _enemyCount.ToString();
     }
 
-    //Pressing Esc Different Functions For Different States
-
-
-
-    //Main Menu Buttons
-    public void StartGame()
+    void WinScreen()
     {
+        _PLAYER.inCutscene = true;
+        _PLAYER.anim.SetFloat("movementSpeed", 0f);
+        gameWon = true;
 
+        StartCoroutine(ShowWinScreen(1f));
     }
 
-    public void OptionsMainMenu()
+    IEnumerator ShowWinScreen(float _waitTime)
     {
+        yield return new WaitForSeconds(_waitTime);
 
+        winPanel.SetActive(true);
+        _GM.ToggleCursorLockState();
     }
 
-    public void Credits()
+    void LoseScreen()
     {
-
+        StartCoroutine(ShowLoseScreen(1f));
     }
 
-    //In Game Buttons
-
-    public void InGamePause()
+    IEnumerator ShowLoseScreen(float _waitTime)
     {
+        yield return new WaitForSeconds(_waitTime);
 
+        losePanel.SetActive(true);
+        _GM.ToggleCursorLockState();
     }
 
-
-
-
-
-
-
-
-    //Quit Buttons
-
-    public void QuitYes()
+    public void EnableEvent()
     {
-        QuitGame();
+        EnemyManager.AllEnemiesDead += WinScreen;
     }
 
-    public void QuitNo()
+    private void OnEnable()
     {
-        quitAreYouSure.SetActive(false);
+        PlayerMovement.PlayerDeath += LoseScreen;
     }
 
-    public void QuitGame()
+    private void OnDisable()
     {
-        Application.Quit();
-        Debug.Log("Game Quit");
-    } 
+        PlayerMovement.PlayerDeath -= LoseScreen;
+        EnemyManager.AllEnemiesDead -= WinScreen;
+    }
 }
