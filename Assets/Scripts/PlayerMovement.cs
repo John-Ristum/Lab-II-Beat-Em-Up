@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Cinemachine;
 
 public enum PlayerState { Idle, Attack, QuickStep, Damage, Block, Dead}
 
@@ -21,6 +22,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Transform orientation;
     public Vector3 inputDirection;
     public Vector3 moveDirection;
+    public CinemachineFreeLook freeLook;
 
     [Header("Gravity")]
     public float gravity = -9.81f;

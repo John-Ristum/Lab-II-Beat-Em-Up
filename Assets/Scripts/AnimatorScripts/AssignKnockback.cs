@@ -43,6 +43,7 @@ public class AssignKnockback : StateMachineBehaviour
                 enemy.damage = damage;
                 enemy.isHeavy = isHeavy;
                 enemy.attackBlocked = false;
+                enemy.attackLandSFX = attackLandSFX;
                 break;
         }
     }

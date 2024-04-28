@@ -22,9 +22,9 @@ TagManager:
   - Boundary
   - BreakThrough
   - BodyParts
-  - 
-  - 
-  - 
+  - HealthPickup
+  - Collider
+  - CameraCollider
   - 
   - 
   - 

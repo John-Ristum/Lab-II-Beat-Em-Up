@@ -13,18 +13,20 @@ public class Enemy : GameBehaviour
     public EnemyState state;
     public int health = 100;
     public int maxHealth = 100;
+    public int lowPlayerHealth = 40;
     public Animator anim;
     public NavMeshAgent agent;
     public Transform groundCheck;
     public bool changeState;
     public Rigidbody rb;
     public Vector3 moveDir;
-    int randomNumber;
     float distToPlayer;
     public bool attacking;
     public Transform orientation;
-    AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip attackLandSFX;
     HealthBar healthBar;
+    public GameObject healthPickUp;
 
     public float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -175,7 +177,7 @@ public class Enemy : GameBehaviour
 
     void RollForAttack()
     {
-        randomNumber = UnityEngine.Random.Range(1, _EM.attackChance + 1);
+        int randomNumber = UnityEngine.Random.Range(1, _EM.attackChance + 1);
 
         if (randomNumber == _EM.attackChance && _EM.enemiesAttacking.Count <= _EM.maxAttacking)
         {
@@ -222,7 +224,6 @@ public class Enemy : GameBehaviour
         anim.applyRootMotion = true;
         state = EnemyState.Attack;
         anim.SetTrigger("atk" + UnityEngine.Random.Range(1, 3));
-        randomNumber = 0;
     }
 
     public void TakeDamage(int _damage)
@@ -284,14 +285,27 @@ public class Enemy : GameBehaviour
 
         healthBar.gameObject.SetActive(false);
 
+        anim.SetTrigger("PlayerDead");
+        GetComponent<MannequinExplode>().Explode();
         _AM.PlaySound(_AM.GetDeathSound(), audioSource);
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         OnEmemyDie?.Invoke(this.gameObject);
 
+        if (_PLAYER.health <= lowPlayerHealth)
+            SpawnHealthPickup();
+
         yield return new WaitForSeconds(0.5f);
 
         Destroy(this.gameObject);
+    }
+
+    void SpawnHealthPickup()
+    {
+        int randomNumber = UnityEngine.Random.Range(1, _EM.hpSpawnChance + 1);
+
+        if (randomNumber == _EM.hpSpawnChance)
+            Instantiate(healthPickUp, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
     }
 
     void PlayerIsDead()
@@ -299,8 +313,6 @@ public class Enemy : GameBehaviour
         state = EnemyState.PlayerDead;
         agent.speed = 0;
         anim.SetTrigger("PlayerDead");
-
-        //Debug.Log("RIP Bozo");
     }
 
     private void OnTriggerEnter(Collider other)

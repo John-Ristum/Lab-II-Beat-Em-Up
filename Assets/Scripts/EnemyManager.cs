@@ -8,6 +8,7 @@ public class EnemyManager : Singleton<EnemyManager>
     public static event Action AllEnemiesDead = null;
 
     public int attackChance = 5;
+    public int hpSpawnChance = 3;
     public int maxAttacking = 3;
 
     public List<Transform> spawnPoints;

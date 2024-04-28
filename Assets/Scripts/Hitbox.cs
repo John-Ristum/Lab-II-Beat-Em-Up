@@ -119,6 +119,9 @@ public class Hitbox : GameBehaviour
                     _PLAYER.TakeDamage(enemy.damage);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
 
+                    //Play SFX
+                    _AM.PlaySound(enemy.attackLandSFX, enemy.audioSource);
+
                     _GM.CamUpdateLate();
 
                     //Determine direction of knockback

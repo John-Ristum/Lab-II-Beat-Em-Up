@@ -8523,7 +8523,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -8546,7 +8546,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -8580,6 +8580,7 @@ MonoBehaviour:
   orientation: {fileID: 1864024176514342379}
   inputDirection: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  freeLook: {fileID: 0}
   gravity: -9.81
   groundCheck: {fileID: 4039693361165697690}
   groundDistance: 0.4
@@ -8592,6 +8593,7 @@ MonoBehaviour:
   slopeForceRayLength: 1.5
   health: 100
   maxHealth: 100
+  healthBar: {fileID: 0}
   cantDie: 0
   anim: {fileID: 0}
   audioSource: {fileID: 0}
@@ -8602,6 +8604,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   turnSmoothTime: 0.1
   turnSmoothVelocity: 0
+  inCutscene: 0
   healthText: {fileID: 0}
   cantDieText: {fileID: 0}
   rb: {fileID: 0}

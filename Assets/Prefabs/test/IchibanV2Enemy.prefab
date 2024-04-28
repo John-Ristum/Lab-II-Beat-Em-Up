@@ -2957,7 +2957,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -3003,6 +3003,7 @@ MonoBehaviour:
   state: 0
   health: 100
   maxHealth: 100
+  lowPlayerHealth: 40
   anim: {fileID: 0}
   agent: {fileID: 0}
   groundCheck: {fileID: 3435368096761818447}
@@ -3011,6 +3012,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0, z: 0}
   attacking: 1
   orientation: {fileID: 1471237816739047551}
+  healthPickUp: {fileID: 5947133701213755376, guid: 5c9e870b7865e704aab30e91c261d146, type: 3}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2

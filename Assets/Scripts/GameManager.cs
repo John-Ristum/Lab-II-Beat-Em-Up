@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+
         _AM.PlaySound(_AM.soundtrack, _AM.audioSource, 0.8f, OSTVolume);
 
         if (Cursor.lockState == CursorLockMode.None)
