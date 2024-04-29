@@ -20,7 +20,6 @@ Material:
   m_InvalidKeywords:
   - _USEADAPTIVESCREENUVSWARP_ON
   - _USEDIFFUSEWARP_ON
-  - _USEOUTLINE_ON
   - _USESCREENUVSWARP_ON
   - _USESCREENUVS_ON
   m_LightmapFlags: 4
@@ -107,7 +106,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AdaptiveThicnkess: 0.092
+    - _AdaptiveThicnkess: 0
     - _BacklightAmount: 0.5
     - _BacklightHardness: 0
     - _BacklightIntensity: 1
@@ -173,7 +172,7 @@ Material:
     - _StepHalftoneTexture: 0
     - _StepOffset: 0
     - _Strength: 0
-    - _Thicnkess: 0.0031
+    - _Thicnkess: 0.0002
     - _UVAnimationSpeed: 2
     - _UVAnimationSpeedSpec: 2
     - _UVAnimationSpeedWarp: 0
@@ -195,7 +194,7 @@ Material:
     - _UseEnvironmentRefletion: 0
     - _UseHatchingConstantScale: 1
     - _UseLightRamp: 1
-    - _UseOutline: 1
+    - _UseOutline: 0
     - _UsePureSketch: 0
     - _UseRimLight: 0
     - _UseScreenUvs: 1
