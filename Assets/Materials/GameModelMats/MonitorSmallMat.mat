@@ -130,7 +130,7 @@ Material:
     - _HalftoneToonAffect: 0
     - _HaltonePatternSize: 0
     - _IndirectLightAffectOnHatch: 0.514
-    - _IndirectLightStrength: 0.725
+    - _IndirectLightStrength: 0.858
     - _InverseMask: 0
     - _LightRampOffset: 0
     - _Lighten: 0
