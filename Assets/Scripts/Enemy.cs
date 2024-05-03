@@ -60,6 +60,7 @@ public class Enemy : GameBehaviour
     public int damage;
     public bool isHeavy;
     public bool attackBlocked;
+    Vector3 lastPlayerLocation;
 
     [Header("Debug")]
     public bool canAttack = true;
@@ -114,8 +115,10 @@ public class Enemy : GameBehaviour
         //transform.position - _PLAYER.transform.position
         //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-        //if (state == EnemyState.Roam || state == EnemyState.Chase)
-        transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        if (state == EnemyState.Roam || state == EnemyState.Chase)
+            transform.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
+        else if (state == EnemyState.Attack)
+            transform.LookAt(lastPlayerLocation);
         //orientation.LookAt(new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z));
         //transform.forward = Vector3.Slerp(transform.forward, _PLAYER.transform.position, Time.deltaTime); // * rotationSpeed
 
@@ -220,6 +223,8 @@ public class Enemy : GameBehaviour
 
     void Attack()
     {
+        lastPlayerLocation = new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z);
+
         agent.speed = 0f;
         anim.applyRootMotion = true;
         state = EnemyState.Attack;

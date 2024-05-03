@@ -10,6 +10,7 @@ public class QuickStep : GameBehaviour
     public int dashNum;
     public int dashLimit = 2;
     Vector3 dashDir;
+    string quickStepAnim;
 
     void Update()
     {
@@ -35,9 +36,21 @@ public class QuickStep : GameBehaviour
     {
         //Gets direction of quickstep (Allows for directional quickstepping)
         if (_PLAYER.inputDirection.magnitude >= 0.1f)
-            dashDir = _PLAYER.moveDirection.normalized;
+        {
+            float targetAngle = Mathf.Atan2(_PLAYER.inputDirection.x, _PLAYER.inputDirection.z) * Mathf.Rad2Deg + _PLAYER.cam.eulerAngles.y;
+            //float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+
+            dashDir = Quaternion.Euler(_PLAYER.x, targetAngle, _PLAYER.z) * Vector3.forward;
+
+            //dashDir = _PLAYER.moveDirection.normalized;
+            quickStepAnim = "QuickStepForward";
+        }
         else
+        {
             dashDir = _PLAYER.transform.forward * -1;
+            quickStepAnim = "QuickStepBack";
+        }    
 
         //Prevents normal player movement
         _PLAYER.state = PlayerState.QuickStep;
@@ -46,7 +59,7 @@ public class QuickStep : GameBehaviour
 
         int dashNum2 = dashNum;
 
-        _PLAYER.anim.SetTrigger("QuickStep");
+        _PLAYER.anim.SetTrigger(quickStepAnim);
 
         //Quickstep movement
         while(Time.time < startTime + dashTime)

@@ -4452,21 +4452,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 0
-  blackBackground: {fileID: 8915176827255826304}
-  creamGradient: {fileID: 1282468251049742825}
-  logoCream: {fileID: 9190145996045063947}
-  logoNormal: {fileID: 4096175782028397055}
-  GamesText: {fileID: 8996979147196031290}
-  startingScreen: {fileID: 1102001889843797183}
-  mainMenu: {fileID: 8619232156774830214}
-  gameScreen: {fileID: 0}
-  quitAreYouSure: {fileID: 0}
-  maxHealth: 100
-  health: 100
-  healthText: {fileID: 0}
-  healthScrollbar: {fileID: 0}
-  healthUi: 0
-  isMainMenu: 1
+  pausePanels: {fileID: 0}
+  pausedMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
+  controlsMenu: {fileID: 0}
+  quitPanel: {fileID: 0}
+  winPanel: {fileID: 0}
+  losePanel: {fileID: 0}
+  enemyCountText: {fileID: 0}
 --- !u!114 &7449034076596500493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5110,7 +5103,15 @@ PrefabInstance:
     - target: {fileID: 8198642857752982837, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7449034076596500492}
+      objectReference: {fileID: 7449034076596500493}
+    - target: {fileID: 8198642857752982837, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198642857752982837, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

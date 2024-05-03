@@ -50,8 +50,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float distance;
     public float nearestDistance = 1000f;
 
-    float x;
-    float z;
+    public float x;
+    public float z;
     public Transform cam;
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
@@ -225,6 +225,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public void Die()
     {
         state = PlayerState.Dead;
+        freeLook.gameObject.SetActive(false);
         GetComponent<MannequinExplode>().Explode();
         anim.SetTrigger("Die");
         _AM.PlaySound(_AM.GetDeathSound(), audioSource);

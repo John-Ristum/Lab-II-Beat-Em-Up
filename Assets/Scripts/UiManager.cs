@@ -88,6 +88,7 @@ public class UiManager : Singleton<UiManager>
     {
         yield return new WaitForSeconds(_waitTime);
 
+        _PLAYER.freeLook.gameObject.SetActive(false);
         winPanel.SetActive(true);
         _GM.ToggleCursorLockState();
     }

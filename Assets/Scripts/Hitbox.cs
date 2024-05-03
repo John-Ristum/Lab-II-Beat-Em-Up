@@ -8,13 +8,14 @@ public class Hitbox : GameBehaviour
 {
     PlayerAttack attack;
     Enemy enemy;
+    Collider collider;
     
     public AttackingParty user;
     //bool attackBlocked;
 
     private void Start()
     {
-        //attackBlocked = false;
+        collider = GetComponent<Collider>();
 
         switch (user)
         {
@@ -134,5 +135,7 @@ public class Hitbox : GameBehaviour
                 }
                 break;
         }
+
+        //collider.gameObject.SetActive(false);
     }
 }

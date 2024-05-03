@@ -146,12 +146,13 @@ public class PlayerAttack : GameBehaviour
 
         int atkDashNum2 = atkDashNum;
 
-        //_PLAYER.anim.SetTrigger("QuickStep");
+        //Sets local variables to value of global equivilents (done to prevent new values being used for previous attacks)
+        float localAtkDashDist = atkDashDist;
 
         //Quickstep movement
         while (Time.time < atkStartTime + atkDashTime)
         {
-            _PLAYER.controller.Move(atkDashDir * atkDashDist * Time.deltaTime);
+            _PLAYER.controller.Move(atkDashDir * localAtkDashDist * Time.deltaTime);
 
             //if (atkDashNum2 != atkDashNum)
             //    break;
