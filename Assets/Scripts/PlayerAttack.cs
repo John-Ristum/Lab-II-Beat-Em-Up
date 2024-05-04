@@ -18,7 +18,9 @@ public class PlayerAttack : GameBehaviour
     public float knockbackXZ;
     public float knockbackY;
     public int damage;
+    public bool attackLanded;
     public bool isHeavy;
+    public bool multiHit;
     public bool freezeY;
 
     [Header("Attack Dash")]
@@ -70,8 +72,12 @@ public class PlayerAttack : GameBehaviour
 
     public void Attack()
     {
+        _PLAYER.anim.ResetTrigger("atkLight");
+        _PLAYER.anim.ResetTrigger("atkHeavy");
+
         Debug.Log("Attack");
         _PLAYER.state = PlayerState.Attack;
+        attackLanded = false;
         if (playerType == PlayerType.Placeholder)
             _PLAYER.anim.applyRootMotion = true;
         _PLAYER.anim.SetBool("cantMove", true);
@@ -94,6 +100,12 @@ public class PlayerAttack : GameBehaviour
         //}
     }
 
+    public void ChangeDirection()
+    {
+        if (_PLAYER.targetEnemy == null)
+            transform.rotation = Quaternion.Euler(0f, _PLAYER.targetAngle, 0f);
+    }
+
     void LightAttack()
     {
         type = AttackType.Light;
@@ -104,13 +116,13 @@ public class PlayerAttack : GameBehaviour
             _PLAYER.anim.ResetTrigger("atkHeavy");
 
             _PLAYER.anim.CrossFadeInFixedTime("ATK1", 0.25f);
-            Attack();
+            //Attack();
             //ClearNearestEnemy();
         }
         else if (canCombo)
         {
             _PLAYER.anim.SetTrigger("atkLight");
-            Attack();
+            //Attack();
         }
     }
 
@@ -121,13 +133,13 @@ public class PlayerAttack : GameBehaviour
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
             _PLAYER.anim.CrossFadeInFixedTime("Fin0", 0.25f);
-            Attack();
+            //Attack();
             //ClearNearestEnemy();
         }
         else if (canCombo)
         {
             _PLAYER.anim.SetTrigger("atkHeavy");
-            Attack();
+            //Attack();
         }
     }
 

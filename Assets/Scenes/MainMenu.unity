@@ -1730,6 +1730,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1232449015}
+    - target: {fileID: 3821602205027274471, guid: 2e85627ca5f01374d8aef4fd63bad506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3827363256115058721, guid: 2e85627ca5f01374d8aef4fd63bad506, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2186,6 +2190,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2013044848}
+    - target: {fileID: 8508156758585212034, guid: 2e85627ca5f01374d8aef4fd63bad506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8515874264908609497, guid: 2e85627ca5f01374d8aef4fd63bad506, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -97276,7 +97284,7 @@ Transform:
   m_GameObject: {fileID: 6779731977420030594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.030716, y: 1.4467897, z: -0.11102568}
+  m_LocalPosition: {x: 34.530716, y: 1.4467897, z: -0.11102568}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97370,7 +97378,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 8300000, guid: 0a846c667f5f00c4396d8e421dbfa668, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -97621,7 +97629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2631826150549245409
 GameObject:
   m_ObjectHideFlags: 0
@@ -99613,7 +99621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8889760733167032757
 MonoBehaviour:
   m_ObjectHideFlags: 0

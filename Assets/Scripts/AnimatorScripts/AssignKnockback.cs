@@ -14,6 +14,7 @@ public class AssignKnockback : StateMachineBehaviour
     public int damage = 10;
     public float atkDashDist = 1f;
     public bool isHeavy;
+    public bool multiHit;
     public bool freezeY;
 
     public AudioClip attackLandSFX;
@@ -31,6 +32,7 @@ public class AssignKnockback : StateMachineBehaviour
                 attack.damage = damage;
                 attack.atkDashDist = atkDashDist;
                 attack.isHeavy = isHeavy;
+                attack.multiHit = multiHit;
                 attack.freezeY = freezeY;
                 attack.attackLandSFX = attackLandSFX;
                 break;

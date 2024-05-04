@@ -292,7 +292,8 @@ public class Enemy : GameBehaviour
 
         anim.SetTrigger("PlayerDead");
         GetComponent<MannequinExplode>().Explode();
-        _AM.PlaySound(_AM.GetDeathSound(), audioSource);
+        //_AM.PlaySound(_AM.GetDeathSound(), audioSource, 0f, 0.5f);
+        _AM.PlayDeathSound(audioSource, 0.35f);
         agent.speed = 0;
         GetComponent<Collider>().enabled = false;
         OnEmemyDie?.Invoke(this.gameObject);

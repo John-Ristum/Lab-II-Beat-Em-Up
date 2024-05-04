@@ -186,8 +186,11 @@ MonoBehaviour:
   knockbackXZ: 200
   knockbackY: 200
   damage: 10
+  atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1101 &-7520307757404931652
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -229,8 +232,11 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1102 &-6787973234327007761
 AnimatorState:
   serializedVersion: 6
@@ -275,8 +281,11 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1101 &-6704511948423630054
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1010,8 +1019,11 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1102 &2113792852190926625
 AnimatorState:
   serializedVersion: 6
@@ -1176,8 +1188,11 @@ MonoBehaviour:
   knockbackXZ: 200
   knockbackY: 0
   damage: 30
+  atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1107 &6272864238956247548
 AnimatorStateMachine:
   serializedVersion: 6
@@ -1271,8 +1286,11 @@ MonoBehaviour:
   knockbackXZ: 400
   knockbackY: 0
   damage: 30
+  atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!114 &6793684938977270122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1289,8 +1307,11 @@ MonoBehaviour:
   knockbackXZ: 300
   knockbackY: 0
   damage: 10
+  atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1101 &6800184790339950597
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1332,8 +1353,11 @@ MonoBehaviour:
   knockbackXZ: 200
   knockbackY: 200
   damage: 1000
+  atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!114 &6990805935787149673
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1350,8 +1374,11 @@ MonoBehaviour:
   knockbackXZ: 100
   knockbackY: 0
   damage: 10
+  atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
+  attackLandSFX: {fileID: 0}
 --- !u!1102 &7340456104371830316
 AnimatorState:
   serializedVersion: 6

@@ -33,6 +33,9 @@ public class Hitbox : GameBehaviour
         switch (user)
         {
             case AttackingParty.Player:
+                if (attack.attackLanded == true && attack.multiHit == false)
+                    return;
+
                 if (other.CompareTag("EnemyT"))
                 {
                     if (other.GetComponent<TestEnemy>() == null)
@@ -90,6 +93,8 @@ public class Hitbox : GameBehaviour
                     enemyRB.velocity = new Vector3(0, 0, 0);
                     //Apply knockback
                     enemyRB.AddForce(knockbackDirection.x * attack.knockbackXZ, knockbackDirection.y * attack.knockbackY, knockbackDirection.z * attack.knockbackXZ);
+
+                    attack.attackLanded = true;
                 }
                 break;
             case AttackingParty.Enemy:

@@ -43,4 +43,9 @@ public class AudioManager : Singleton<AudioManager>
         _source.volume = _volume;
         _source.Play();
     }
+
+    public void PlayDeathSound(AudioSource _source, float _volume = 1f)
+    {
+        PlaySound(GetDeathSound(), _source, 0f, _volume);
+    }
 }

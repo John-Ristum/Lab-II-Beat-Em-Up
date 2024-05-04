@@ -21,6 +21,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float walkSpeed = 5f;
     public Transform orientation;
     public Vector3 inputDirection;
+    public float targetAngle;
     public Vector3 moveDirection;
     public CinemachineFreeLook freeLook;
 
@@ -153,16 +154,21 @@ public class PlayerMovement : Singleton<PlayerMovement>
         #region Method B
         inputDirection = new Vector3(x, 0f, z);
 
-        if (inputDirection.magnitude >= 0.1f && state == PlayerState.Idle)
+        if (inputDirection.magnitude >= 0.1f)
         {
+            //if (state != PlayerState.Idle && state != PlayerState.Attack)
+            //    return;
+
             if (inputDirection.magnitude > 0.6 && Input.GetAxisRaw("Walk") <= 0)
                 speed = runSpeed;
             else
                 speed = walkSpeed;
 
-            float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            if (state == PlayerState.Idle)
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(x, targetAngle, z) * Vector3.forward;
 

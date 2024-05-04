@@ -185,11 +185,12 @@ MonoBehaviour:
   user: 0
   knockbackXZ: 500
   knockbackY: 200
-  damage: 10
+  damage: 50
   atkDashDist: 10
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
-  attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
+  attackLandSFX: {fileID: 8300000, guid: f83984c57f870d741b412d0306f5bccc, type: 3}
 --- !u!1101 &-7520307757404931652
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -233,6 +234,7 @@ MonoBehaviour:
   damage: 10
   atkDashDist: 2
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1102 &-6787973234327007761
@@ -257,7 +259,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4a8f3833c768b0543ab7d36ac582c452, type: 2}
+  m_Motion: {fileID: 7400000, guid: bbb1388062d9e15418f004b362cc4916, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -281,8 +283,9 @@ MonoBehaviour:
   damage: 10
   atkDashDist: 2
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
-  attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
+  attackLandSFX: {fileID: 8300000, guid: 214105f376e9f3840b11f27f4e3e7450, type: 3}
 --- !u!1101 &-6704511948423630054
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -863,55 +866,55 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: atkLight
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: atkHeavy
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: cantMove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: QuickStepBack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: QuickStepForward
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Damage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: blocking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1050,6 +1053,7 @@ MonoBehaviour:
   damage: 10
   atkDashDist: 2
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1102 &2113792852190926625
@@ -1128,6 +1132,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &3865774846399401783
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FIN_0
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 4a8f3833c768b0543ab7d36ac582c452, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &3964201869661442526
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1243,8 +1273,9 @@ MonoBehaviour:
   damage: 30
   atkDashDist: 2
   isHeavy: 1
+  multiHit: 1
   freezeY: 0
-  attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
+  attackLandSFX: {fileID: 8300000, guid: 4462d00f45f959e4e893aee8b563af68, type: 3}
 --- !u!1107 &6272864238956247548
 AnimatorStateMachine:
   serializedVersion: 6
@@ -1311,6 +1342,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -3749909514551231507}
     m_Position: {x: 1010, y: -80, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 3865774846399401783}
+    m_Position: {x: -150, y: -10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 8431063849520951835}
@@ -1344,6 +1378,7 @@ MonoBehaviour:
   damage: 30
   atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 0}
 --- !u!114 &6793684938977270122
@@ -1361,11 +1396,12 @@ MonoBehaviour:
   user: 0
   knockbackXZ: 300
   knockbackY: 0
-  damage: 10
+  damage: 40
   atkDashDist: 2
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
-  attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
+  attackLandSFX: {fileID: 8300000, guid: 8c3efb6d15f95bb4086c520de1c09572, type: 3}
 --- !u!1101 &6800184790339950597
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1404,13 +1440,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: 0
-  knockbackXZ: 200
+  knockbackXZ: 300
   knockbackY: 200
-  damage: 1000
+  damage: 10
   atkDashDist: 10
   isHeavy: 1
+  multiHit: 1
   freezeY: 0
-  attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
+  attackLandSFX: {fileID: 8300000, guid: a9032ba3159682e4abc379e42691ba88, type: 3}
 --- !u!114 &6990805935787149673
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1429,6 +1466,7 @@ MonoBehaviour:
   damage: 10
   atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 0}
 --- !u!1101 &7030441632375694983
