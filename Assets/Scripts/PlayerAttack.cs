@@ -37,6 +37,9 @@ public class PlayerAttack : GameBehaviour
 
     void Update()
     {
+        if (_UI.isPaused)
+            return;
+
         //Test player damage
         if (Input.GetKeyDown("0"))
             _PLAYER.TakeDamage(10);

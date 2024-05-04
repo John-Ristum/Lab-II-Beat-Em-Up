@@ -15,6 +15,11 @@ public class UiManager : Singleton<UiManager>
 
     [Header("Win Screen")]
     public GameObject winPanel;
+    public TMP_Text timeText;
+    public TMP_Text damageTakenText;
+    public TMP_Text rankLetter;
+    float minutes;
+    float seconds;
 
     [Header("Lose Screen")]
     public GameObject losePanel;
@@ -22,7 +27,7 @@ public class UiManager : Singleton<UiManager>
     [Header("Enemy Count")]
     public TMP_Text enemyCountText;
 
-    bool isPaused = false;
+    public bool isPaused = false;
     bool gameWon = false;
 
     void Start()
@@ -32,6 +37,9 @@ public class UiManager : Singleton<UiManager>
 
     void Update()
     {
+        if (Input.GetKeyDown("5"))
+            _GM.CalculateRank();
+
         if (Input.GetButtonDown("Pause"))
         {
             TogglePause();
@@ -77,9 +85,19 @@ public class UiManager : Singleton<UiManager>
 
     void WinScreen()
     {
+        _GM.isTiming = false;
         _PLAYER.inCutscene = true;
         _PLAYER.anim.SetFloat("movementSpeed", 0f);
         gameWon = true;
+
+        _GM.CalculateRank();
+
+        minutes = Mathf.FloorToInt(_GM.timer / 60);
+        seconds = Mathf.FloorToInt(_GM.timer % 60);
+
+        timeText.text = "Time -     " + "0" + minutes + '-' + seconds;
+        damageTakenText.text = "Damage Taken -    " + _GM.damageRecieved;
+        rankLetter.text = _GM.rank.ToString();
 
         StartCoroutine(ShowWinScreen(1f));
     }

@@ -14,6 +14,9 @@ public class QuickStep : GameBehaviour
 
     void Update()
     {
+        if (_UI.isPaused)
+            return;
+
         if (_PLAYER.state == PlayerState.Dead || _PLAYER.inCutscene == true)
             return;
 

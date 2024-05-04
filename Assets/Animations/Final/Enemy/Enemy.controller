@@ -90,6 +90,7 @@ MonoBehaviour:
   damage: 5
   atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1102 &-6467235060349875386
@@ -222,6 +223,7 @@ MonoBehaviour:
   damage: 5
   atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1101 &-1785749055868582353
@@ -289,6 +291,7 @@ MonoBehaviour:
   damage: 5
   atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!91 &9100000
@@ -637,6 +640,7 @@ MonoBehaviour:
   damage: 5
   atkDashDist: 1
   isHeavy: 1
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1101 &7017358351207667820
@@ -732,6 +736,7 @@ MonoBehaviour:
   damage: 5
   atkDashDist: 1
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   attackLandSFX: {fileID: 8300000, guid: af00c53d0267085458e20f88814e360d, type: 3}
 --- !u!1101 &8632915685146456057

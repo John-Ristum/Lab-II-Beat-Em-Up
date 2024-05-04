@@ -216,6 +216,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         anim.SetTrigger("Damage");
         health -= _damage;
+        _GM.damageRecieved += _damage;
         healthBar.UpdateHealthBar(health, maxHealth);
         Debug.Log(health);
 
