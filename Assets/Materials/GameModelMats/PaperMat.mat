@@ -131,7 +131,7 @@ Material:
     - _IndirectLightAffectOnHatch: 1
     - _IndirectLightStrength: 0.407
     - _InverseMask: 0
-    - _LightRampOffset: 0
+    - _LightRampOffset: 0.32
     - _Lighten: 0
     - _MainLightIntesity: 1.46
     - _MaxScaleDependingOnCamera: 1

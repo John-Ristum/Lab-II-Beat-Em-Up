@@ -8580,6 +8580,7 @@ MonoBehaviour:
   walkSpeed: 3
   orientation: {fileID: 1864024176514342379}
   inputDirection: {x: 0, y: 0, z: 0}
+  targetAngle: 0
   moveDirection: {x: 0, y: 0, z: 0}
   freeLook: {fileID: 0}
   gravity: -9.81
@@ -8633,6 +8634,7 @@ MonoBehaviour:
   damage: 0
   attackLanded: 0
   isHeavy: 0
+  multiHit: 0
   freezeY: 0
   atkDashDist: 1
   atkDashTime: 0.25

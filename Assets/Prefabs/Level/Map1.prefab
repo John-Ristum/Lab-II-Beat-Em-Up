@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bridge: {fileID: 7763661276530698925}
+  oldBridge: {fileID: 0}
+  oldAreaBoundary: {fileID: 0}
   spawnPoints:
   - {fileID: 9069000216209694858}
   - {fileID: 5912180314473539735}
@@ -4827,6 +4829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e99a1648310ed4d866a43e44becb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animWaitTime: 2
+  cutsceneCam: {fileID: 0}
   oldBoundary: {fileID: 0}
   newBoundary: {fileID: 0}
 --- !u!1 &7929220211773440714
@@ -5849,6 +5853,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8359025383832179152}
     m_Modifications:
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 387.45462
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.73
       objectReference: {fileID: 0}
@@ -5888,6 +5896,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5644639418064056131, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8709fac654749ac488f13b57eaed0b31, type: 2}
     - target: {fileID: 6426514930083132819, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_Name
       value: Paper
@@ -6828,10 +6840,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4190651241806826779, guid: 891219293297ae044b0ff2a1ebb1697b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a61d0c15b965b449a3cb8368ba858e5, type: 2}
+    - target: {fileID: 4526134064745516092, guid: 891219293297ae044b0ff2a1ebb1697b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a61d0c15b965b449a3cb8368ba858e5, type: 2}
     - target: {fileID: 4722403704984407712, guid: 891219293297ae044b0ff2a1ebb1697b, type: 3}
       propertyPath: m_Name
       value: NoteBook (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8342301825711225241, guid: 891219293297ae044b0ff2a1ebb1697b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a61d0c15b965b449a3cb8368ba858e5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9058,6 +9082,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8359025383832179152}
     m_Modifications:
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 526.89014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.01
       objectReference: {fileID: 0}
@@ -9071,7 +9099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99999774
+      value: 0.99693197
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalRotation.x
@@ -9079,7 +9107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.002135577
+      value: -0.07827324
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalRotation.z
@@ -9091,12 +9119,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.245
+      value: -8.979
       objectReference: {fileID: 0}
     - target: {fileID: 2245637351395756767, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5644639418064056131, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c4df33556ada4064e89699042862fc52, type: 2}
     - target: {fileID: 6426514930083132819, guid: 969d67a8ec6f8f94280048520d4e3e46, type: 3}
       propertyPath: m_Name
       value: Paper (1)
