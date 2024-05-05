@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartScreen : MonoBehaviour
+public class StartScreen : GameBehaviour
 {
     public GameObject startingScreen;
     public GameObject mainMenu;
@@ -22,6 +22,8 @@ public class StartScreen : MonoBehaviour
 
         // Do something after waiting
         Debug.Log("Waited for " + waitTime + " seconds. Now do something.");
+
+        
 
         startingScreen.SetActive(false);
         mainMenu.SetActive(true);

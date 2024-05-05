@@ -28811,6 +28811,71 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &588997365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 423776367746242479, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548452691956056787, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: soundtrack
+      value: 
+      objectReference: {fileID: 8300000, guid: b74169ff1ae6c93429f7122e769e419a, type: 3}
+    - target: {fileID: 2548452691956056787, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: deathSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112431676916433986, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ce1c8e0b7e0f4643be368285dc0850d, type: 3}
 --- !u!43 &590756157
 Mesh:
   m_ObjectHideFlags: 0
@@ -76800,7 +76865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1748061611
 AudioSource:
   m_ObjectHideFlags: 0
@@ -97203,6 +97268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7291813078936573977}
   - component: {fileID: 7000882054360391223}
+  - component: {fileID: 7291813078936573978}
   m_Layer: 5
   m_Name: StartingScreenPanels
   m_TagString: Untagged
@@ -98837,6 +98903,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7291813078936573978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102001889843797183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffbb667131c07d419b8a70e0e8e46c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OSTVolume: 0.25
 --- !u!222 &7344083644203106500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -98947,8 +99026,12 @@ MonoBehaviour:
   controlsMenu: {fileID: 0}
   quitPanel: {fileID: 0}
   winPanel: {fileID: 0}
+  timeText: {fileID: 0}
+  damageTakenText: {fileID: 0}
+  rankLetter: {fileID: 0}
   losePanel: {fileID: 0}
   enemyCountText: {fileID: 0}
+  isPaused: 0
 --- !u!114 &7449034076596500493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99746,3 +99829,4 @@ SceneRoots:
   - {fileID: 1808588528}
   - {fileID: 29600889}
   - {fileID: 1007084504}
+  - {fileID: 588997365}

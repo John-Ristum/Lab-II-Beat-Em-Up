@@ -328,6 +328,24 @@ public class Enemy : GameBehaviour
 
         if (other.CompareTag("OutOfBounds"))
             Die();
+
+        //if (other.CompareTag("Enemy") && state == EnemyState.Damage)
+        //{
+
+        //    Enemy enemy = other.GetComponent<Enemy>();
+        //    Rigidbody enemyRB = other.attachedRigidbody;
+
+        //    enemy.TakeDamage(1);
+        //    //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
+
+        //    //Determine direction of knockback
+        //    Vector3 knockbackDirection = enemyRB.transform.position - transform.position;
+        //    //Resets velocity to prevent knockback compounding
+        //    //enemyRB.isKinematic = false;
+        //    enemyRB.velocity = new Vector3(0, 0, 0);
+        //    //Apply knockback
+        //    enemyRB.AddForce(knockbackDirection.x * 200f, knockbackDirection.y * 0f, knockbackDirection.z * 200f);
+        //}
     }
 
     private void OnTriggerExit(Collider other)

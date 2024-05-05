@@ -62,19 +62,19 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Rank S");
             return;
         }
-        else if (timer <= 121f && damageRecieved <= 25)
+        else if (timer <= 121f && damageRecieved <= 35)
         {
             rank = GameRank.A;
             Debug.Log("Rank A");
             return;
         }
-        else if (timer <= 151f && damageRecieved <= 50)
+        else if (timer <= 151f && damageRecieved <= 70)
         {
             rank = GameRank.B;
             Debug.Log("Rank B");
             return;
         }
-        else if (timer <= 181f && damageRecieved <= 80)
+        else if (timer <= 181f && damageRecieved <= 105)
         {
             rank = GameRank.C;
             Debug.Log("Rank C");
