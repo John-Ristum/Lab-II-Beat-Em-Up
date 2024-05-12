@@ -21,7 +21,6 @@ Material:
   - _USEADAPTIVESCREENUVSWARP_ON
   - _USEDIFFUSEWARP_ON
   - _USEOUTLINE_ON
-  - _USESCREENUVSWARP_ON
   - _USESCREENUVS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -200,7 +199,7 @@ Material:
     - _UseRimLight: 0
     - _UseScreenUvs: 1
     - _UseScreenUvsSpecular: 0
-    - _UseScreenUvsWarp: 1
+    - _UseScreenUvsWarp: 0
     - _UseSpecular: 1
     - _UseSpecularMask: 0
     - _WarpStrength: 0.78

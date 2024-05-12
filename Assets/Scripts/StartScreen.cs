@@ -6,6 +6,9 @@ public class StartScreen : GameBehaviour
 {
     public GameObject startingScreen;
     public GameObject mainMenu;
+    public GameObject mainFirstButton;
+
+    public UiButtons uiButtons;
 
     void Start()
     {
@@ -26,6 +29,7 @@ public class StartScreen : GameBehaviour
         
 
         startingScreen.SetActive(false);
+        uiButtons.SetFirstButton(mainFirstButton);
         mainMenu.SetActive(true);
     }
 }

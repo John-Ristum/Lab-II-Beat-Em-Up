@@ -20,6 +20,8 @@ public class ResetParameters : StateMachineBehaviour
             movement.ActivateCC();
 
         movement.state = PlayerState.Idle;
+        movement.lockRotation = false;
+        movement.canCancel = true;
         quickStep.dashNum = 0;
         animator.applyRootMotion = false;
         animator.SetBool("cantMove", false);

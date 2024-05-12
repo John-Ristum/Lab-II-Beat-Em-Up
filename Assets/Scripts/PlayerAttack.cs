@@ -20,6 +20,7 @@ public class PlayerAttack : GameBehaviour
     public int damage;
     public bool attackLanded;
     public bool isHeavy;
+    public int damageAnim;
     public bool multiHit;
     public bool freezeY;
 
@@ -40,16 +41,10 @@ public class PlayerAttack : GameBehaviour
         if (_UI.isPaused)
             return;
 
-        //Test player damage
-        if (Input.GetKeyDown("0"))
-            _PLAYER.TakeDamage(10);
-        if (Input.GetKeyDown("9"))
-            _PLAYER.RecoverHealth(10);
-
         if (_PLAYER.state == PlayerState.Dead || _PLAYER.inCutscene == true)
             return;
 
-        if (_PLAYER.state != PlayerState.Block || _PLAYER.state != PlayerState.Damage)
+        if (_PLAYER.state != PlayerState.Block && _PLAYER.state != PlayerState.Damage)
         {
             if (Input.GetButtonDown("AtkLight"))
                 LightAttack();
@@ -75,11 +70,12 @@ public class PlayerAttack : GameBehaviour
 
     public void Attack()
     {
-        _PLAYER.anim.ResetTrigger("atkLight");
-        _PLAYER.anim.ResetTrigger("atkHeavy");
+        //_PLAYER.anim.ResetTrigger("atkLight");
+        //_PLAYER.anim.ResetTrigger("atkHeavy");
 
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         _PLAYER.state = PlayerState.Attack;
+        _PLAYER.canCancel = false;
         attackLanded = false;
         if (playerType == PlayerType.Placeholder)
             _PLAYER.anim.applyRootMotion = true;
@@ -88,13 +84,12 @@ public class PlayerAttack : GameBehaviour
 
         ClearNearestEnemy();
 
-        //checks for enemy in range
-        if (_PLAYER.targetEnemy == null)
-            FindNearestEnemy();
+        SnapPlayer();
 
-        //makes player face enemy if one is in range
         if (_PLAYER.targetEnemy != null)
-            _PLAYER.transform.LookAt(new Vector3(_PLAYER.targetEnemy.transform.position.x, _PLAYER.transform.position.y, _PLAYER.targetEnemy.transform.position.z));    //transform.localPosition was causing problems when target was parented to other object
+            _PLAYER.lockRotation = true;
+        else
+            _PLAYER.lockRotation = false;
 
         //if (playerType == PlayerType.Normal)
         //{
@@ -105,8 +100,7 @@ public class PlayerAttack : GameBehaviour
 
     public void ChangeDirection()
     {
-        if (_PLAYER.targetEnemy == null)
-            transform.rotation = Quaternion.Euler(0f, _PLAYER.targetAngle, 0f);
+        _PLAYER.lockRotation = true;
     }
 
     void LightAttack()
@@ -120,12 +114,15 @@ public class PlayerAttack : GameBehaviour
 
             _PLAYER.anim.CrossFadeInFixedTime("ATK1", 0.25f);
             //Attack();
-            //ClearNearestEnemy();
+            ClearNearestEnemy();
+            SnapPlayer();
         }
         else if (canCombo)
         {
             _PLAYER.anim.SetTrigger("atkLight");
             //Attack();
+            ClearNearestEnemy();
+            SnapPlayer();
         }
     }
 
@@ -135,15 +132,34 @@ public class PlayerAttack : GameBehaviour
 
         if (_PLAYER.state == PlayerState.Idle || _PLAYER.state == PlayerState.QuickStep)
         {
+            if (_PLAYER.heavyTimer > 0)
+                return;
+
             _PLAYER.anim.CrossFadeInFixedTime("Fin0", 0.25f);
             //Attack();
-            //ClearNearestEnemy();
+            ClearNearestEnemy();
+            ClearNearestEnemy();
+            SnapPlayer();
+            _PLAYER.heavyTimer = 1f;
         }
         else if (canCombo)
         {
             _PLAYER.anim.SetTrigger("atkHeavy");
             //Attack();
+            ClearNearestEnemy();
+            SnapPlayer();
         }
+    }
+
+    void SnapPlayer()
+    {
+        //checks for enemy in range
+        if (_PLAYER.targetEnemy == null)
+            FindNearestEnemy();
+
+        //makes player face enemy if one is in range
+        if (_PLAYER.targetEnemy != null)
+            _PLAYER.transform.LookAt(new Vector3(_PLAYER.targetEnemy.transform.position.x, _PLAYER.transform.position.y, _PLAYER.targetEnemy.transform.position.z));    //transform.localPosition was causing problems when target was parented to other object
     }
 
     public void AttackDash()
@@ -178,18 +194,22 @@ public class PlayerAttack : GameBehaviour
 
     void Block()
     {
-        //timer = 2f;
+        if (_PLAYER.state != PlayerState.Idle && _PLAYER.state != PlayerState.Block)
+            return;
 
         _PLAYER.state = PlayerState.Block;
         _PLAYER.anim.SetBool("blocking", true);
         blockCollider.SetActive(true);
     }
 
-    void ExitBlock()
+    public void ExitBlock()
     {
-        _PLAYER.state = PlayerState.Idle;
-        _PLAYER.anim.SetBool("blocking", false);
-        blockCollider.SetActive(false);
+        if (_PLAYER.state == PlayerState.Block || _PLAYER.state == PlayerState.Damage)
+        {
+            _PLAYER.state = PlayerState.Idle;
+            _PLAYER.anim.SetBool("blocking", false);
+            blockCollider.SetActive(false);
+        }
     }
 
     void FindNearestEnemy()

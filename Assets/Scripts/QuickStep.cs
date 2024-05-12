@@ -20,9 +20,9 @@ public class QuickStep : GameBehaviour
         if (_PLAYER.state == PlayerState.Dead || _PLAYER.inCutscene == true)
             return;
 
-        if (Input.GetButtonDown("QuickStep") && _PLAYER.state != PlayerState.Damage)
+        if (Input.GetButtonDown("QuickStep") && _PLAYER.state != PlayerState.Damage && _PLAYER.state != PlayerState.Block)
         {
-            if (dashNum >= dashLimit)
+            if (dashNum >= dashLimit || !_PLAYER.canCancel)
                 return;
 
             dashNum++;
@@ -59,6 +59,9 @@ public class QuickStep : GameBehaviour
         _PLAYER.state = PlayerState.QuickStep;
 
         startTime = Time.time;
+
+        _PLAYER.canCancel = false;
+        _PLAYER.heavyTimer = 0f;
 
         int dashNum2 = dashNum;
 

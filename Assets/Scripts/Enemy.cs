@@ -59,6 +59,7 @@ public class Enemy : GameBehaviour
     public float knockbackY;
     public int damage;
     public bool isHeavy;
+    public int damageAnim;
     public bool attackBlocked;
     Vector3 lastPlayerLocation;
 
@@ -231,7 +232,7 @@ public class Enemy : GameBehaviour
         anim.SetTrigger("atk" + UnityEngine.Random.Range(1, 3));
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int _damage, int _anim = 1)
     {
         health -= _damage;
         healthBar.UpdateHealthBar(health, maxHealth);
@@ -250,7 +251,7 @@ public class Enemy : GameBehaviour
             agent.enabled = false;
             rb.isKinematic = false;
 
-            anim.SetTrigger("Damage");
+            anim.SetTrigger("Damage" + _anim);
         }
     }
 

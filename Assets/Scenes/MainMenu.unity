@@ -38672,6 +38672,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815022389}
   m_CullTransparentMesh: 1
+--- !u!1 &832614335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1267332718088509081, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+  m_PrefabInstance: {fileID: 107437075641088541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &834431238
 Mesh:
   m_ObjectHideFlags: 0
@@ -54290,7 +54295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: 116.00001}
+  m_AnchoredPosition: {x: 600, y: 110}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189351524
@@ -63375,6 +63380,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1376728190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2819111899193171199, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+  m_PrefabInstance: {fileID: 833848280444080976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1378239188
 Mesh:
   m_ObjectHideFlags: 0
@@ -72227,6 +72237,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 7449034076596500495}
+        m_TargetAssemblyTypeName: UiButtons, Assembly-CSharp
+        m_MethodName: SetFirstButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1652863984340016502}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1609104373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75439,6 +75461,7 @@ RectTransform:
   - {fileID: 2098128286}
   - {fileID: 1609104371}
   - {fileID: 1896582015}
+  - {fileID: 2121295161}
   m_Father: {fileID: 7387738138527415894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -75649,6 +75672,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1717510655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2816873943928761213, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+  m_PrefabInstance: {fileID: 8513505106976636172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1721937044
 Mesh:
   m_ObjectHideFlags: 0
@@ -83273,7 +83301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 161.99998}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850543261
@@ -96714,6 +96742,90 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2121295160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121295161}
+  - component: {fileID: 2121295162}
+  m_Layer: 0
+  m_Name: JMC_BLACK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121295161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121295160}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -800, y: -480, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1716034459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2121295162
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121295160}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 3aab53d4fca40e842a3c0ef91e50f69b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 48.57263, y: 14.42}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!43 &2130689236
 Mesh:
   m_ObjectHideFlags: 0
@@ -97572,6 +97684,7 @@ GameObject:
   - component: {fileID: 7384182349383964757}
   - component: {fileID: 7449034076596500493}
   - component: {fileID: 7449034076596500494}
+  - component: {fileID: 7449034076596500495}
   - component: {fileID: 7449034076596500492}
   m_Layer: 5
   m_Name: UiCanvas
@@ -97685,13 +97798,85 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2059613148}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 7449034076596500495}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetFirstButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UiButtons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1376728190}
+    - target: {fileID: 4474955337273273209, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2546286363224556033}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 7449034076596500495}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetFirstButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UiButtons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6589324316453558381}
+    - target: {fileID: 8337492772128134564, guid: 459272ebd567e6045853b5ccc0ce94b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97845,9 +98030,45 @@ PrefabInstance:
     m_TransformParent: {fileID: 7387738138527415894}
     m_Modifications:
     - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1061177765}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 7449034076596500495}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetFirstButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UiButtons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 832614335}
+    - target: {fileID: 328219787237047844, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 620196344329930399, guid: cda9c93cada957a4eab35bdc892f6c5c, type: 3}
       propertyPath: m_Name
       value: ControlsPanel
@@ -98067,7 +98288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1102623842509112273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -98470,6 +98691,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 7449034076596500495}
+        m_TargetAssemblyTypeName: UiButtons, Assembly-CSharp
+        m_MethodName: SetFirstButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 832614335}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2546286363224556033
 GameObject:
   m_ObjectHideFlags: 0
@@ -98487,7 +98720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2631826150549245409
 GameObject:
   m_ObjectHideFlags: 0
@@ -98598,6 +98831,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7449034076596500495}
+        m_TargetAssemblyTypeName: UiButtons, Assembly-CSharp
+        m_MethodName: SetFirstButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1717510655}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -98869,6 +99114,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7449034076596500495}
+        m_TargetAssemblyTypeName: UiButtons, Assembly-CSharp
+        m_MethodName: SetFirstButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1609104370}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -99583,7 +99840,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6936206906031342599
 RectTransform:
@@ -99659,7 +99916,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7287616079113816388
 CanvasRenderer:
@@ -99817,11 +100074,15 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   controlsMenu: {fileID: 0}
   quitPanel: {fileID: 0}
+  pausedFirstButton: {fileID: 0}
+  uiButtons: {fileID: 0}
   winPanel: {fileID: 0}
+  winFirstButton: {fileID: 0}
   timeText: {fileID: 0}
   damageTakenText: {fileID: 0}
   rankLetter: {fileID: 0}
   losePanel: {fileID: 0}
+  loseFirstButton: {fileID: 0}
   enemyCountText: {fileID: 0}
   isPaused: 0
 --- !u!114 &7449034076596500493
@@ -99850,6 +100111,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingScreen: {fileID: 1102001889843797183}
   mainMenu: {fileID: 8619232156774830214}
+  mainFirstButton: {fileID: 3958693822173934874}
+  uiButtons: {fileID: 7449034076596500495}
+--- !u!114 &7449034076596500495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47434236728155409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d94a418247f18543ba09c5ac452e1ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7625979455583058940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100381,9 +100656,45 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2546286363224556033}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 7449034076596500495}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetFirstButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UiButtons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3434003459271683201}
+    - target: {fileID: 3667569645087132330, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5697712512005565220, guid: 5ce7520219dd6814486307fb4e097b36, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -100496,7 +100807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8889760733167032757
 MonoBehaviour:
   m_ObjectHideFlags: 0

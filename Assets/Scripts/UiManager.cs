@@ -12,9 +12,12 @@ public class UiManager : Singleton<UiManager>
     public GameObject optionsMenu;
     public GameObject controlsMenu;
     public GameObject quitPanel;
+    public GameObject pausedFirstButton;
+    public UiButtons uiButtons;
 
     [Header("Win Screen")]
     public GameObject winPanel;
+    public GameObject winFirstButton;
     public TMP_Text timeText;
     public TMP_Text damageTakenText;
     public TMP_Text rankLetter;
@@ -23,6 +26,9 @@ public class UiManager : Singleton<UiManager>
 
     [Header("Lose Screen")]
     public GameObject losePanel;
+    public GameObject loseFirstButton;
+
+    [Header("UI Buttons")]
 
     [Header("Enemy Count")]
     public TMP_Text enemyCountText;
@@ -57,6 +63,7 @@ public class UiManager : Singleton<UiManager>
         {
             pausePanels.SetActive(true);
             pausedMenu.SetActive(true);
+            uiButtons.SetFirstButton(pausedFirstButton);
 
             _GM.ToggleCursorLockState();
             Time.timeScale = 0;
@@ -94,8 +101,20 @@ public class UiManager : Singleton<UiManager>
 
         minutes = Mathf.FloorToInt(_GM.timer / 60);
         seconds = Mathf.FloorToInt(_GM.timer % 60);
+        string displayMinutes;
+        string displaySeconds;
 
-        timeText.text = "Time -     " + "0" + minutes + '-' + seconds;
+        if (minutes >= 10)
+            displayMinutes = minutes.ToString();
+        else
+            displayMinutes = "0" + minutes.ToString();
+
+        if (seconds >= 10)
+            displaySeconds = seconds.ToString();
+        else
+            displaySeconds = "0" + seconds.ToString();
+
+        timeText.text = "Time -     " + displayMinutes + '-' + displaySeconds;
         damageTakenText.text = "Damage Taken -    " + _GM.damageRecieved;
         rankLetter.text = _GM.rank.ToString();
 
@@ -108,6 +127,7 @@ public class UiManager : Singleton<UiManager>
 
         _PLAYER.freeLook.gameObject.SetActive(false);
         winPanel.SetActive(true);
+        uiButtons.SetFirstButton(winFirstButton);
         _GM.ToggleCursorLockState();
     }
 
@@ -121,6 +141,7 @@ public class UiManager : Singleton<UiManager>
         yield return new WaitForSeconds(_waitTime);
 
         losePanel.SetActive(true);
+        uiButtons.SetFirstButton(loseFirstButton);
         _GM.ToggleCursorLockState();
     }
 

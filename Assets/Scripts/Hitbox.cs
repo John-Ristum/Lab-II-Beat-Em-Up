@@ -80,7 +80,7 @@ public class Hitbox : GameBehaviour
                         enemy.gameObject.layer = breakThroughLayer;
                     }
 
-                    enemy.TakeDamage(attack.damage);
+                    enemy.TakeDamage(attack.damage, attack.damageAnim);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
 
                     //Play SFX
@@ -93,6 +93,8 @@ public class Hitbox : GameBehaviour
                     enemyRB.velocity = new Vector3(0, 0, 0);
                     //Apply knockback
                     enemyRB.AddForce(knockbackDirection.x * attack.knockbackXZ, knockbackDirection.y * attack.knockbackY, knockbackDirection.z * attack.knockbackXZ);
+
+                    //_PLAYER.targetEnemy = other.gameObject;
 
                     attack.attackLanded = true;
                 }
@@ -122,7 +124,7 @@ public class Hitbox : GameBehaviour
                     }
 
 
-                    _PLAYER.TakeDamage(enemy.damage);
+                    _PLAYER.TakeDamage(enemy.damage, enemy.damageAnim);
                     //enemy.Knockback(attack.knockbackXZ, attack.knockbackY);
 
                     //Play SFX

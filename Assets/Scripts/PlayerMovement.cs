@@ -23,6 +23,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Vector3 inputDirection;
     public float targetAngle;
     public Vector3 moveDirection;
+    public bool lockRotation;
     public CinemachineFreeLook freeLook;
 
     [Header("Gravity")]
@@ -42,9 +43,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public int health = 100;
     public int maxHealth = 100;
     public HealthBar healthBar;
+    public bool canCancel = true;
+    public float heavyTimer;
     public bool cantDie;
     public Animator anim;
     public AudioSource audioSource;
+    PlayerAttack attack;
 
     public List<GameObject> enemiesInRange;
     public GameObject targetEnemy;
@@ -70,11 +74,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         speed = runSpeed;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rbCollider = GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
+        attack = GetComponent<PlayerAttack>();
         
         //UseRigidbody(false);
     }
@@ -85,11 +91,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown("1"))
-        {
-            cantDie = !cantDie;
-            cantDieText.SetActive(cantDie);
-        }
+        //if (Input.GetKeyDown("1"))
+        //{
+        //    cantDie = !cantDie;
+        //    cantDieText.SetActive(cantDie);
+        //}
         //ToggleCursorLockState();
 
         //if (Input.GetKeyDown("r"))
@@ -102,14 +108,27 @@ public class PlayerMovement : Singleton<PlayerMovement>
             _GM.CamUpdateFixed();
 
         //test change layer
-        if (Input.GetKeyDown("8") && onBoundary)
-            ChangeLayerTest();
-        
+        //if (Input.GetKeyDown("8") && onBoundary)
+        //    ChangeLayerTest();
+
+        //Stop game for screenshot
+        //if (Input.GetButtonDown("ScreenPause"))
+        //{
+        //    if (Time.timeScale == 1)
+        //        Time.timeScale = 0;
+        //    else
+        //        Time.timeScale = 1;
+        //}
+
+        if (heavyTimer > 0)
+        {
+            heavyTimer -= Time.deltaTime;
+        }
+
     }
 
     private void FixedUpdate()
     {
-
         MovePlayer();
     }
 
@@ -167,8 +186,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
             targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            if (state == PlayerState.Idle)
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (state == PlayerState.Idle || state == PlayerState.Attack)
+            {
+                if (lockRotation == false)
+                    transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
 
             moveDirection = Quaternion.Euler(x, targetAngle, z) * Vector3.forward;
 
@@ -206,7 +228,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         return false;
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(int _damage, int _damageAnim = 1)
     {
         if (state == PlayerState.Dead || cantDie)
             return;
@@ -214,11 +236,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
         state = PlayerState.Damage;
         ActivateRB();
 
-        anim.SetTrigger("Damage");
+        anim.SetTrigger("Damage" + _damageAnim);
         health -= _damage;
         _GM.damageRecieved += _damage;
         healthBar.UpdateHealthBar(health, maxHealth);
         Debug.Log(health);
+        attack.ExitBlock();
 
         //if (healthText != null)
         //{
@@ -282,6 +305,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
                 //break;
             }
         }
+    }
+
+    public void ActivateCancel()
+    {
+        canCancel = true;
     }
 
     private void OnEnable()
