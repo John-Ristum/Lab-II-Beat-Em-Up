@@ -8,6 +8,7 @@ public class AssignKnockback : StateMachineBehaviour
 
     PlayerAttack attack;
     Enemy enemy;
+    AttackProperties attackProperties;
 
     public float knockbackXZ = 100f;
     public float knockbackY;
@@ -23,6 +24,18 @@ public class AssignKnockback : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        attackProperties = animator.GetComponent<AttackProperties>();
+
+        attackProperties.knockbackXZ = knockbackXZ;
+        attackProperties.knockbackY = knockbackY;
+        attackProperties.damage = damage;
+        attackProperties.atkDashDist = atkDashDist;
+        attackProperties.isHeavy = isHeavy;
+        attackProperties.damageAnim = damageAnim;
+        attackProperties.multiHit = multiHit;
+        attackProperties.freezeY = freezeY;
+        attackProperties.attackLandSFX = attackLandSFX;
+
         switch (user)
         {
             case AttackingParty.Player:

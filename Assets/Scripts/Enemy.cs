@@ -27,6 +27,7 @@ public class Enemy : GameBehaviour
     public AudioClip attackLandSFX;
     HealthBar healthBar;
     public GameObject healthPickUp;
+    AttackProperties attackProperties;
 
     public float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
@@ -75,6 +76,7 @@ public class Enemy : GameBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         healthBar = GetComponentInChildren<HealthBar>();
+        attackProperties = GetComponent<AttackProperties>();
         StartCoroutine(PositionCheck());
     }
 
@@ -226,6 +228,7 @@ public class Enemy : GameBehaviour
     {
         lastPlayerLocation = new Vector3(_PLAYER.transform.localPosition.x, transform.position.y, _PLAYER.transform.localPosition.z);
 
+        attackProperties.attackLanded = false;
         agent.speed = 0f;
         anim.applyRootMotion = true;
         state = EnemyState.Attack;

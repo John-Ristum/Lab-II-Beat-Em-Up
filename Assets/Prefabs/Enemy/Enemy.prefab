@@ -8107,6 +8107,7 @@ GameObject:
   - component: {fileID: 6342072871591619325}
   - component: {fileID: 7834004871775938913}
   - component: {fileID: 7685397025806370698}
+  - component: {fileID: -6457091768340208876}
   - component: {fileID: 1307080588313191578}
   - component: {fileID: 408356005179422391}
   m_Layer: 7
@@ -8287,9 +8288,23 @@ MonoBehaviour:
   knockbackY: 0
   damage: 0
   isHeavy: 0
+  damageAnim: 0
   attackBlocked: 0
   canAttack: 1
   canDie: 1
+--- !u!114 &-6457091768340208876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041476849905722282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6f2941bfb686d49b0b347840aa724f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user: 1
 --- !u!195 &1307080588313191578
 NavMeshAgent:
   m_ObjectHideFlags: 0

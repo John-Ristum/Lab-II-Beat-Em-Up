@@ -76,7 +76,7 @@ public class PlayerAttack : GameBehaviour
         //Debug.Log("Attack");
         _PLAYER.state = PlayerState.Attack;
         _PLAYER.canCancel = false;
-        attackLanded = false;
+        _PLAYER.attackProperties.attackLanded = false;
         if (playerType == PlayerType.Placeholder)
             _PLAYER.anim.applyRootMotion = true;
         _PLAYER.anim.SetBool("cantMove", true);

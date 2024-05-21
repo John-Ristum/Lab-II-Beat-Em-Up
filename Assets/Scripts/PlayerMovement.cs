@@ -49,6 +49,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Animator anim;
     public AudioSource audioSource;
     PlayerAttack attack;
+    public AttackProperties attackProperties;
 
     public List<GameObject> enemiesInRange;
     public GameObject targetEnemy;
@@ -81,6 +82,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         rbCollider = GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
         attack = GetComponent<PlayerAttack>();
+        attackProperties = GetComponent<AttackProperties>();
         
         //UseRigidbody(false);
     }
