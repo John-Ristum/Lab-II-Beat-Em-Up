@@ -35,16 +35,16 @@ public class AttackProperties : GameBehaviour
         
     }
 
-    public void Damage(int _damage, int _anim = 1)
-    {
-        switch (user)
-        {
-            case AttackingParty.Player:
-                _PLAYER.TakeDamage(_damage, _anim);
-                break;
-            case AttackingParty.Enemy:
-                enemy.TakeDamage(_damage, _anim);
-                break;
-        }
-    }
+    //public void Damage(int _damage, int _anim = 1)
+    //{
+    //    switch (user)
+    //    {
+    //        case AttackingParty.Player:
+    //            _PLAYER.TakeDamage(_damage, _anim);
+    //            break;
+    //        case AttackingParty.Enemy:
+    //            enemy.TakeDamage(_damage, _anim);
+    //            break;
+    //    }
+    //}
 }

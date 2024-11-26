@@ -8,7 +8,7 @@ using Cinemachine;
 
 public enum PlayerState { Idle, Attack, QuickStep, Damage, Block, Dead}
 
-public class PlayerMovement : Singleton<PlayerMovement>
+public class PlayerMovement : Singleton<PlayerMovement>, IDamageable
 {
     public static event Action PlayerDeath = null;
 
@@ -252,6 +252,11 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
         if (health <= 0)
             Die();
+    }
+
+    public void Damage(int _damage, int _anim = 1)
+    {
+        TakeDamage(_damage, _anim);
     }
 
     public void Die()

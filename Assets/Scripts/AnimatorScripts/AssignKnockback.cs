@@ -9,6 +9,7 @@ public class AssignKnockback : StateMachineBehaviour
     PlayerAttack attack;
     Enemy enemy;
     AttackProperties attackProperties;
+    IAttackProperties attackPropertiesInterface;
 
     public float knockbackXZ = 100f;
     public float knockbackY;

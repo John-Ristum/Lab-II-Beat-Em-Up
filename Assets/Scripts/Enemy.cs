@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public enum EnemyState { Roam, Chase, Attack, Damage, Die, PlayerDead}
-public class Enemy : GameBehaviour
+public class Enemy : GameBehaviour, IDamageable, IAttackProperties
 {
     public static event Action<GameObject> OnEmemyDie = null;
 
@@ -258,6 +258,11 @@ public class Enemy : GameBehaviour
         }
     }
 
+    public void Damage(int _damage, int _anim = 1)
+    {
+        TakeDamage(_damage, _anim);
+    }
+
     public void Knockback(float _knockbackXZ, float _knockbackY)
     {
         ////Determine direction of knockback
@@ -367,4 +372,26 @@ public class Enemy : GameBehaviour
     {
         PlayerMovement.PlayerDeath -= PlayerIsDead;
     }
+
+    #region IAttackProperties Functions
+    public AudioClip AttackLandSFX()
+    {
+        return attackLandSFX;
+    }
+
+    public float KnockbackXZ()
+    {
+        return knockbackXZ;
+    }
+
+    public float KnockbackY()
+    {
+        return knockbackY;
+    }
+
+    public int AttackDamage()
+    {
+        return damage;
+    }
+    #endregion
 }

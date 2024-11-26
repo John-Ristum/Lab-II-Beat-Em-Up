@@ -5,7 +5,7 @@ using UnityEngine;
 public enum PlayerType { Normal, Placeholder}
 public enum AttackType { Light, Heavy}
 
-public class PlayerAttack : GameBehaviour
+public class PlayerAttack : GameBehaviour, IAttackProperties
 {
     public PlayerType playerType;
     public AttackType type;
@@ -236,4 +236,26 @@ public class PlayerAttack : GameBehaviour
     {
         _PLAYER.anim.CrossFadeInFixedTime("Idle", 0.25f);
     }
+
+    #region IAttackProperties Functions
+    public AudioClip AttackLandSFX()
+    {
+        return attackLandSFX;
+    }
+
+    public float KnockbackXZ()
+    {
+        return knockbackXZ;
+    }
+
+    public float KnockbackY()
+    {
+        return knockbackY;
+    }
+
+    public int AttackDamage()
+    {
+        return damage;
+    }
+    #endregion
 }
