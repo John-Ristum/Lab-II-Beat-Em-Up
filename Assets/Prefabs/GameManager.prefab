@@ -45,4 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 0
+  rank: 0
   cineBrain: {fileID: 0}
+  OSTVolume: 0.25
+  isTiming: 0
+  timer: 0
+  damageRecieved: 0
